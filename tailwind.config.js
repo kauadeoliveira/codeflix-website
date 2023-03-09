@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'kalam': ['Kalam', 'cursive']
+        'caveat': ['Caveat', 'cursive']
       }
     },
   },
