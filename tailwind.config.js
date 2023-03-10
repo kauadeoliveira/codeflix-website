@@ -11,7 +11,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'caveat': ['Caveat', 'cursive']
+        'caveat': ['Caveat', 'cursive'],
+        'poppins': ['Poppins', 'sans-serif'],
       }
     },
   },
