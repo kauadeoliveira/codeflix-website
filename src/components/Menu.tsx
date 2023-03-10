@@ -2,7 +2,7 @@
 
 import { MyContext } from '@/context';
 import { useContext } from 'react';
-import { HiX,} from "react-icons/hi"
+import { HiX } from "react-icons/hi"
 import Accordion from './Accordion';
 import MenuItem from './MenuItem';
 
@@ -14,14 +14,13 @@ export default function Menu() {
     return(
         <div 
          className={`block h-screen w-full ${openMenu ? "transform-none" : "translate-y-[-100vh]"}
-         duration-500 transition-transform bg-black p-3 md:hidden fixed top-0 left-0`}
-        >
+         duration-500 transition-transform bg-black p-3 md:hidden fixed top-0 left-0`}>
             <div className='flex justify-end'>
-                <button onClick={handleCloseMenu}>
+                <button onClick={handleCloseMenu} className='opacity-80 hover:opacity-100'>
                     <HiX />
                 </button>
             </div>
-            <nav className='text-2xl flex flex-col gap-3 '>
+            <nav className='text-2xl flex flex-col gap-3'>
                 <MenuItem>
                     <a href="#">My List</a>
                 </MenuItem>
