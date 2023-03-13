@@ -1,3 +1,6 @@
+import Button from "./Button";
+import { BsPlayFill } from "react-icons/bs";
+
 export default function Poster() {
     return(
         <div className='relative'>
@@ -7,9 +10,14 @@ export default function Poster() {
                 <source srcSet="postermovie_md.png" media="(min-width: 768px)"/>
                 <img src="postermovie_sm.png" alt="" />
             </picture>
-            {/* <div className="bg-red-500 absolute bottom-0 left-0 h-14 w-full opacity-50">
-
-            </div> */}
+            <div className="absolute bottom-0 left-0 h-14 w-full bg-red-500">
+                <div className="m-auto w-24">
+                    <Button mode="dark">
+                        <BsPlayFill className="text-xl" />
+                        Trailer
+                    </Button>
+                </div>
+            </div>
         </div>
     )
 }
