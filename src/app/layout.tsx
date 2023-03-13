@@ -1,3 +1,5 @@
+"use client";
+
 import Header from '@/components/Header'
 import ContextProvider from '@/context'
 import { queryClient } from '@/utils/queryClient'
