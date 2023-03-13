@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ChildrenType } from "@/types/children";
 import { createContext, useState } from "react"

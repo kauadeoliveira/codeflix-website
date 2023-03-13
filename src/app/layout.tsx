@@ -1,5 +1,9 @@
+"use client";
+
 import Header from '@/components/Header'
 import ContextProvider from '@/context'
+import { queryClient } from '@/utils/queryClient'
+import { QueryClientProvider } from 'react-query'
 import './globals.css'
 
 export const metadata = {
@@ -22,8 +26,10 @@ export default function RootLayout({
       </head>
         <body>
           <ContextProvider>
+            <QueryClientProvider client={queryClient}>
               <Header />
               {children}
+            </QueryClientProvider>
           </ContextProvider>
         </body>
     </html>

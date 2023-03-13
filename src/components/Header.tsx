@@ -16,7 +16,7 @@ export default function Header() {
 
     return(
         <>
-            <header className='w-full flex justify-between sm:text-2xl md:text-lg py-1 px-4 md:px-6 md:py-2 fixed top-0 left-0'>
+            <header className='w-full flex justify-between sm:text-2xl md:text-lg py-1 px-4 md:px-6 md:py-2 fixed top-0 left-0 z-10'>
                 <button onClick={handleOpenMenu} className='block md:hidden'>
                     <HiMenu />
                 </button>
