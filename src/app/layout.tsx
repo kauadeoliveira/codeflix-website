@@ -1,10 +1,10 @@
 "use client";
 
+import './globals.css'
 import Header from '@/components/Header'
 import ContextProvider from '@/context'
 import { queryClient } from '@/utils/queryClient'
 import { QueryClientProvider } from 'react-query'
-import './globals.css'
 
 export const metadata = {
   title: 'Create Next App',
