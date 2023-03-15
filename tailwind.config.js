@@ -13,6 +13,8 @@ module.exports = {
       fontFamily: {
         caveat: ['Caveavt', 'cursive'],
         poppins: ['Poppins', 'sans-serif'],
+        salsa: ['Salsa', 'cursive'],
+        berkshire: ['Berkshire Swash', 'cursive']
       }
     },
   },

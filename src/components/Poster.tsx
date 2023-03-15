@@ -1,6 +1,6 @@
 import Button from "./Button";
 import { BsPlayFill } from "react-icons/bs";
-import { HiPlus, HiOutlineDotsCircleHorizontal } from "react-icons/hi";
+import { HiOutlinePlusSm, HiOutlineDotsCircleHorizontal } from "react-icons/hi";
 
 import IconButton from "./IconButton";
 
@@ -15,7 +15,7 @@ export default function Poster() {
             </picture>
             <div className="absolute bottom-0 left-0 h-14 w-full">
                 <div className="m-auto flex md:w-1/3 justify-around">
-                    <IconButton mode="light" Icon={HiPlus}> 
+                    <IconButton mode="light" Icon={HiOutlinePlusSm}> 
                         Add to list
                     </IconButton>
                     <Button mode="light" Icon={BsPlayFill}>
