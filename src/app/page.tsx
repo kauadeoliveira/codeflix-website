@@ -5,7 +5,6 @@ import { fetchMovie } from '@/utils/fetchMovies'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 
-
 export default function Home() {
   const { data } = useQuery('movie', () => fetchMovie(11216))
 
