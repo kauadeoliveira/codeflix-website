@@ -1,6 +1,5 @@
 "use client"
 
-import MovieCard from '@/components/MovieCard'
 import Poster from '@/components/Poster'
 import { fetchMovie } from '@/utils/fetchMovies'
 import { useEffect } from 'react'
@@ -15,8 +14,6 @@ export default function Home() {
     <>
       <div className='bg-white h-[200vh] w-screen'>
         <Poster />
-        <div className='flex gap-1 bg-red-500'>
-        </div>
       </div>
     </>
   )
