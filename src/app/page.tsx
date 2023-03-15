@@ -1,5 +1,7 @@
 "use client"
 
+import Carousel from '@/components/Carousel'
+import MovieCard from '@/components/MovieCard'
 import Poster from '@/components/Poster'
 import { fetchMovie } from '@/utils/fetchMovies'
 import { useEffect } from 'react'
@@ -13,6 +15,15 @@ export default function Home() {
     <>
       <div className='bg-white h-[200vh] w-screen'>
         <Poster />
+        <Carousel>
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+        </Carousel>
       </div>
     </>
   )

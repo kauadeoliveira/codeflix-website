@@ -1,7 +1,9 @@
+import { motion } from "framer-motion"
+
 export default function MovieCard() {
     return(
-        <div className="w-full h-full bg-black">
+        <motion.div className="min-w-[180px] h-[270px] bg-black">
             .
-        </div>
+        </motion.div>
     )
 }
