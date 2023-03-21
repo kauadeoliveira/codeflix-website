@@ -9,6 +9,7 @@ type SliderProps = {
 }
 export default function Slider({ children, title }: SliderProps) {
     const { width } = useWindowSize();
+
     const responsive = {
         mobile_sm: {
             breakpoint: {
@@ -59,8 +60,6 @@ export default function Slider({ children, title }: SliderProps) {
             partialVisibilityGutter: 30
         }
       }
-
-
 
     return(
         <div className="p-2">
