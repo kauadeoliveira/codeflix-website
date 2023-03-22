@@ -1,0 +1,1 @@
+export type Category = 'latest' | 'now_playing' | 'popular' | 'top_rated' | 'upcoming'

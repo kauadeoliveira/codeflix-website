@@ -1,7 +1,7 @@
 "use client";
 
 import './globals.css'
-import ContextProvider from '@/context'
+import ContextProvider from '@/context/MyContext'
 import { QueryClientProvider } from 'react-query'
 import { Header } from '@/components';
 import { queryClient } from '@/utils';

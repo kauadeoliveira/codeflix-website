@@ -22,9 +22,6 @@ export default function ContextProvider({ children }: ContextProviderProps) {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openSearch, setOpenSearch] = useState<boolean>(false);
 
-
-
-
     return(
         <MyContext.Provider value={{
             openMenu,

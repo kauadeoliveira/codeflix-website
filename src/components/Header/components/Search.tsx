@@ -1,6 +1,6 @@
 "use client"
 
-import { MyContext } from "@/context"
+import { MyContext } from "@/context/MyContext"
 import { useContext } from "react"
 import { HiX } from "react-icons/hi"
 

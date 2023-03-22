@@ -2,7 +2,7 @@
 
 import { HiMenu, HiSearch } from "react-icons/hi";
 import { useContext } from 'react'
-import { MyContext } from "@/context";
+import { MyContext } from "@/context/MyContext";
 import { Menu } from "./components/Menu";
 import { Search } from "./components/Search";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { Accordion } from '@/components/Accordion';
-import { MyContext } from '@/context';
+import { MyContext } from '@/context/MyContext';
 import { useContext } from 'react';
 import { HiX } from "react-icons/hi"
 
