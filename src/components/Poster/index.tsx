@@ -1,10 +1,10 @@
-import Button from "./Button/Button";
 import { BsPlayFill } from "react-icons/bs";
 import { HiOutlinePlusSm, HiOutlineDotsCircleHorizontal } from "react-icons/hi";
+import { Button } from "../Button";
+import { IconButton } from "../IconButton";
 
-import IconButton from "./IconButton/IconButton";
 
-export default function Poster() {
+export const Poster = () => {
     return(
         <div className='relative'>
             <div className='bg-black opacity-50 absolute top-0 left-0 h-full w-full'></div>

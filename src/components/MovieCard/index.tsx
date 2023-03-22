@@ -7,7 +7,7 @@ type MovieCardType = {
     route: string;
 }
 
-export default function MovieCard({ title, img, route }: MovieCardType) {
+export const MovieCard = ({ title, img, route }: MovieCardType) => {
     return(
         <motion.a href={route} className="block min-w-[180px] w-[180px] h-[270px] bg-red-500 rounded-lg">
             {/* <Image

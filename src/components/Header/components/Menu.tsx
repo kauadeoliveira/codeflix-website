@@ -1,12 +1,11 @@
 "use client";
 
+import { Accordion } from '@/components/Accordion';
 import { MyContext } from '@/context';
 import { useContext } from 'react';
 import { HiX } from "react-icons/hi"
-import Accordion from './Accordion/Accordion';
 
-
-export default function Menu() {
+export const Menu = () => {
     const { openMenu, setOpenMenu } = useContext(MyContext);
     const handleCloseMenu = () => setOpenMenu?.(false);
 

@@ -9,7 +9,7 @@ type AccordionType = {
 }
 
 
-export default function Accordion({ title, children }: AccordionType) {
+export const Accordion = ({ title, children }: AccordionType) => {
     const [openAccordion, setOpenAccordion] = useState<boolean>(false);
     const handleOpenAccordion = () => setOpenAccordion(!openAccordion);
 

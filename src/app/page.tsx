@@ -1,6 +1,6 @@
 "use client"
 
-import Poster from '@/components/Poster'
+import { Poster, Slider } from '@/components'
 import { fetchPopularMovies } from '@/utils/fetchPopular'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'

@@ -1,4 +1,4 @@
-import { useWindowSize } from '@/hooks/useWindowSize';
+import { useWindowSize } from '@/hooks';
 import { ChildrenType } from '@/types/children';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -7,7 +7,7 @@ type SliderProps = {
     children: ChildrenType;
     title?: Capitalize<string>;
 }
-export default function Slider({ children, title }: SliderProps) {
+export const Slider = ({ children, title }: SliderProps) => {
     const { width } = useWindowSize();
 
     const responsive = {

@@ -3,12 +3,12 @@
 import { HiMenu, HiSearch } from "react-icons/hi";
 import { useContext } from 'react'
 import { MyContext } from "@/context";
+import { Menu } from "./components/Menu";
+import { Search } from "./components/Search";
 
-import Menu from "../Menu";
-import Search from "../Search";
 
 
-export default function Header() {
+export const Header = () => {
     const { setOpenMenu, setOpenSearch } = useContext(MyContext);
 
     const handleOpenMenu = () => setOpenMenu?.(true);

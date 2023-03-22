@@ -4,7 +4,7 @@ import { MyContext } from "@/context"
 import { useContext } from "react"
 import { HiX } from "react-icons/hi"
 
-export default function Search() {
+export const Search = () => {
     const { openSearch, setOpenSearch } = useContext(MyContext);
     const handleCloseSearch = () => setOpenSearch?.(false);
 

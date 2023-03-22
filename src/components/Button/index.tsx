@@ -1,6 +1,6 @@
 import { ButtonType } from "@/types/button";
 
-export default function Button({ children, mode, route, onClick, Icon }: ButtonType) {
+export const Button = ({ children, mode, route, onClick, Icon }: ButtonType) => {
     const buttonStyleClasses = `
         ${mode === 'dark' ? 'bg-zinc-800 text-white' : 'bg-[#FAFBFC] text-black'}
         ${mode === 'dark' ? 'hover:bg-zinc-700' : 'hover:bg-[#ebebeb]'}
