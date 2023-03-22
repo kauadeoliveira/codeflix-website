@@ -10,17 +10,11 @@ export default function Home() {
   const top_series = useQuery('top_series', () => getCategory('tv', 'top_rated'));
 
   useEffect(() => console.log(top_movies.data?.results), [top_movies.isLoading])
+  
   return (
     <>
-      <div className='bg-black h-[200vh] w-screen'>
+      <div className="bg-[#121212] h-[200vh] w-screen">
         <Poster />
-        {!top_movies.isLoading &&
-        <Slider>
-          {top_movies.data.results.map(movie => (
-            <MovieCard img={movie.poster_path} route="#" title={movie.title} key={movie.id}/>
-          ))}
-        </Slider>
-        }
       </div>
     </>
   )
