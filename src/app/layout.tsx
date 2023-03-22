@@ -2,9 +2,9 @@
 
 import './globals.css'
 import ContextProvider from '@/context'
-import { queryClient } from '@/utils/queryClient'
 import { QueryClientProvider } from 'react-query'
 import { Header } from '@/components';
+import { queryClient } from '@/utils';
 
 export default function RootLayout({
   children,
