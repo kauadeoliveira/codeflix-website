@@ -4,7 +4,6 @@ import { HiMenu, HiSearch } from "react-icons/hi";
 import { useContext } from 'react'
 import { MyContext } from "@/context";
 
-import NavigationItem from "./components/NavigationItem";
 import Menu from "../Menu";
 import Search from "../Search";
 
@@ -23,10 +22,38 @@ export default function Header() {
                 </button>
                 <a href="/" className='font-berkshire text-2xl md:text-3xl'>Codeflix</a>
                 <nav className='hidden md:flex gap-10 text-lg'>
-                    <NavigationItem route="#">Movies</NavigationItem>
-                    <NavigationItem route="#">Series</NavigationItem>
-                    <NavigationItem route="#">My List</NavigationItem>
-                    <NavigationItem route="#">Category</NavigationItem>
+                    <a
+                     href="#"
+                     className="px-2 opacity-80 hover:opacity-100 relative after:content-['']
+                     after:absolute after:bg-rose-500 after:h-[3px] after:w-0 after:transition-all after:duration-300
+                     after:left-0 after:bottom-0 hover:after:w-full font-poppins"
+                    >
+                        Movies
+                    </a>
+                    <a
+                     href="#"
+                     className="px-2 opacity-80 hover:opacity-100 relative after:content-['']
+                     after:absolute after:bg-rose-500 after:h-[3px] after:w-0 after:transition-all after:duration-300
+                     after:left-0 after:bottom-0 hover:after:w-full font-poppins"
+                    >
+                        Series
+                    </a>
+                    <a
+                     href="#"
+                     className="px-2 opacity-80 hover:opacity-100 relative after:content-['']
+                     after:absolute after:bg-rose-500 after:h-[3px] after:w-0 after:transition-all after:duration-300
+                     after:left-0 after:bottom-0 hover:after:w-full font-poppins"
+                    >
+                        My List
+                    </a>
+                    <a
+                     href="#"
+                     className="px-2 opacity-80 hover:opacity-100 relative after:content-['']
+                     after:absolute after:bg-rose-500 after:h-[3px] after:w-0 after:transition-all after:duration-300
+                     after:left-0 after:bottom-0 hover:after:w-full font-poppins"
+                    >
+                        Category
+                    </a>
                 </nav>
                 <button onClick={handleOpenSearch}>
                     <HiSearch />
