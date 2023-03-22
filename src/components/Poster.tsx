@@ -1,8 +1,8 @@
-import Button from "./Button";
+import Button from "./Button/Button";
 import { BsPlayFill } from "react-icons/bs";
 import { HiOutlinePlusSm, HiOutlineDotsCircleHorizontal } from "react-icons/hi";
 
-import IconButton from "./IconButton";
+import IconButton from "./IconButton/IconButton";
 
 export default function Poster() {
     return(

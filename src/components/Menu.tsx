@@ -3,8 +3,7 @@
 import { MyContext } from '@/context';
 import { useContext } from 'react';
 import { HiX } from "react-icons/hi"
-import Accordion from './Accordion';
-import MenuItem from './MenuItem';
+import Accordion from './Accordion/Accordion';
 
 
 export default function Menu() {
@@ -21,15 +20,15 @@ export default function Menu() {
                 </button>
             </div>
             <nav className='text-2xl flex flex-col gap-3'>
-                <MenuItem>
+                <span className="font-poppins font-bold uppercase">
                     <a href="#">My List</a>
-                </MenuItem>
-                <MenuItem>
+                </span>
+                <span className="font-poppins font-bold uppercase">
                     <a href="#">Movies</a>
-                </MenuItem>
-                <MenuItem>
+                </span>
+                <span className="font-poppins font-bold uppercase">
                     <a href="#">Series</a>
-                </MenuItem>
+                </span>
                 <Accordion title='Categories'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, dicta inventore aut quae suscipit, ex consequuntur deserunt doloribus magnam blanditiis alias maiores nemo excepturi sapiente? Debitis distinctio quos fugit maxime.
                 </Accordion>

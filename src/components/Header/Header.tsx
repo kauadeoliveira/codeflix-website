@@ -1,11 +1,12 @@
 "use client";
 
 import { HiMenu, HiSearch } from "react-icons/hi";
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { MyContext } from "@/context";
-import NavigationItem from "./NavigationItem";
-import Menu from "./Menu";
-import Search from "./Search";
+
+import NavigationItem from "./components/NavigationItem";
+import Menu from "../Menu";
+import Search from "../Search";
 
 
 export default function Header() {

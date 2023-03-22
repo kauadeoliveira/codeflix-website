@@ -22,7 +22,8 @@ export default function ContextProvider({ children }: ContextProviderProps) {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openSearch, setOpenSearch] = useState<boolean>(false);
 
-    // usar useReducer para estados da lista de filmes/series.
+
+
 
     return(
         <MyContext.Provider value={{
