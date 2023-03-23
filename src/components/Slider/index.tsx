@@ -69,6 +69,7 @@ export const Slider = ({ children, title }: SliderProps) => {
              infinite
              slidesToSlide={width && width > 950 ? 7 : width && width > 550 ? 3 : 2}
              ssr
+             swipeable
             >
                 {children}
             </Carousel>

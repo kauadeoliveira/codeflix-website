@@ -16,7 +16,7 @@ export const Header = () => {
 
     return(
         <>
-            <header className='w-full flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2 fixed top-0 left-0 z-10'>
+            <header className='w-full flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2 fixed top-0 left-0 z-[2000]'>
                 <button onClick={handleOpenMenu} className='block md:hidden'>
                     <HiMenu />
                 </button>
@@ -28,7 +28,7 @@ export const Header = () => {
                      after:absolute after:bg-rose-500 after:h-[3px] after:w-0 after:transition-all after:duration-300
                      after:left-0 after:bottom-0 hover:after:w-full font-poppins"
                     >
-                        Movies
+                        Filmes
                     </a>
                     <a
                      href="#"
@@ -44,7 +44,7 @@ export const Header = () => {
                      after:absolute after:bg-rose-500 after:h-[3px] after:w-0 after:transition-all after:duration-300
                      after:left-0 after:bottom-0 hover:after:w-full font-poppins"
                     >
-                        My List
+                        Minha Lista
                     </a>
                     <a
                      href="#"
@@ -52,7 +52,7 @@ export const Header = () => {
                      after:absolute after:bg-rose-500 after:h-[3px] after:w-0 after:transition-all after:duration-300
                      after:left-0 after:bottom-0 hover:after:w-full font-poppins"
                     >
-                        Category
+                        Categoria
                     </a>
                 </nav>
                 <button onClick={handleOpenSearch}>
