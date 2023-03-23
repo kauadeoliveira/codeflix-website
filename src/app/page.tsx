@@ -1,15 +1,16 @@
 "use client"
 
-import { MovieCard, Poster, Slider } from '@/components'
+import { LoadingCards, MovieCard, Poster, Slider } from '@/components'
 import { getCategory, getGenres } from '@/services/http'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 
 export default function Home() {
   const top_movies = useQuery('top_movies', () => getCategory('movie', 'top_rated'));
-  const top_series = useQuery('top_series', () => getCategory('tv', 'top_rated'));
+  const { data: top_series_data, isLoading: top_series_isLoading } = useQuery('top_series', () => getCategory('tv', 'top_rated'));
 
-  useEffect(() => console.log(top_movies.data?.results), [top_movies.isLoading])
+
+  useEffect(() => console.log(top_movies.isFetched), [top_movies.isFetched])
   
   return (
     <>

@@ -68,6 +68,7 @@ export const Slider = ({ children, title }: SliderProps) => {
              responsive={responsive}
              infinite
              slidesToSlide={width && width > 950 ? 7 : width && width > 550 ? 3 : 2}
+             ssr
             >
                 {children}
             </Carousel>
