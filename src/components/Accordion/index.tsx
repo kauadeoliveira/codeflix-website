@@ -2,6 +2,7 @@
 
 import { ChildrenType } from '@/types/children';
 import { useState } from 'react';
+import { HiMinusSm, HiPlusSm } from 'react-icons/hi';
 
 type AccordionType = {
     title: string;
@@ -15,10 +16,11 @@ export const Accordion = ({ title, children }: AccordionType) => {
 
     return(
         <div>
-            <button onClick={handleOpenAccordion} className='uppercase font-bold'>
+            <div onClick={handleOpenAccordion} className='uppercase font-bold flex items-center justify-between cursor-pointer'>
                 {title}
-            </button>
-            <div className={`${openAccordion ? "block" : "hidden"} text-base px-2`}>
+                {openAccordion ? <HiMinusSm /> : <HiPlusSm />}
+            </div>
+            <div className={`${openAccordion ? "block" : "hidden"} text-base p-2 `}>
                 {children}
             </div>
         </div>
