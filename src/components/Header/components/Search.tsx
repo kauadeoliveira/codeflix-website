@@ -10,7 +10,7 @@ export const Search = () => {
 
     return(
         <div className={`block h-screen w-full ${openSearch ? "transform-none" : "translate-y-[-100vh]"}
-        duration-500 transition-transform bg-black p-3 md:hidden fixed top-0 left-0 z-[3000]`}>
+        duration-500 transition-transform bg-main-color p-3 md:hidden fixed top-0 left-0 z-[3000]`}>
             <div className='flex justify-end'>
                 <button onClick={handleCloseSearch} className='opacity-80 hover:opacity-100 text-2xl'>
                     <HiX />

@@ -7,7 +7,6 @@ type PosterProps = {
     overview: string;
     images: {
         lg: string;
-        md: string;
         sm: string;
     };
     route: string;
@@ -18,7 +17,11 @@ export const Poster = ({ title, overview, images, route }: PosterProps) => {
     return(
         <div className="relative">
             {/* Backdrop effect */}
-           <div className="bg-main-color opacity-75 w-full h-full absolute top-0 left-0" />
+           <div 
+             className={`
+             bg-main-color opacity-75 w-full h-full absolute top-0 left-0
+             ${width && width >= 768 ? 'block' : 'hidden'}`} 
+            />
 
            {/* Titulo e descrição do filme que só aparecerá quando a largura da janela for superior a 768px */}
            <div
@@ -39,12 +42,17 @@ export const Poster = ({ title, overview, images, route }: PosterProps) => {
            </div>
 
            {/* A imagem do poster vai ser selecionada de acordo com a largura da janela */}
-            <div>
-                <picture>
-                    <source srcSet={images.lg} media={"(min-width: 1024px)"}/>
-                    <source srcSet={images.md} media={"(min-width: 768px)"}/>
-                    <img src={images.sm} alt={`${title} Poster`} />
+            <div className="bg-main-color">
+                <picture> 
+                    <source srcSet={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${images.lg}`} media={"(min-width: 1024px)"}/>
+                    <source srcSet={`https://image.tmdb.org/t/p/original${images.lg}`} media={"(min-width: 768px)"}/>
+                    <img src={`https://image.tmdb.org/t/p/original/${images.sm}`} alt={`${title} Poster`} />
                 </picture>
+            </div>
+
+            <div className={`w-full absolute bottom-3 gap-3 justify-center ${width && width < 768 ? 'flex' : 'hidden'}`}>
+                <Button mode="light" Icon={HiPlay}>Trailer</Button>
+                <Button mode="dark" route={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
             </div>
         </div>
     )

@@ -16,11 +16,13 @@ export const Header = () => {
 
     return(
         <>
-            <header className='w-full flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2 fixed top-0 left-0 z-[2000]'>
+            <header className='w-full flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2  top-0 left-0 z-[2000] sticky'>
                 <button onClick={handleOpenMenu} className='block md:hidden'>
                     <HiMenu />
                 </button>
-                <a href="/" className='font-berkshire text-2xl md:text-3xl'>Codeflix</a>
+                <a href="/" className='font-berkshire text-2xl md:text-3xl text-rose-500'>
+                    Codeflix
+                </a>
                 <nav className='hidden md:flex gap-10 text-lg'>
                     <a
                      href="#"

@@ -28,8 +28,8 @@ export const Menu = () => {
     return(
         <div 
          className={`block h-screen w-full ${openMenu ? "transform-none" : "translate-y-[-100vh]"}
-         duration-500 transition-transform bg-black p-3 md:hidden fixed top-0 left-0 z-[3000]`}>
-            <div className='flex justify-end'>
+         duration-500 transition-transform bg-main-color md:hidden fixed top-0 left-0 z-[3000] overflow-auto`}>
+            <div className='flex justify-end w-full'>
                 <button onClick={handleCloseMenu} className='opacity-80 hover:opacity-100 text-2xl'>
                     <HiX />
                 </button>
