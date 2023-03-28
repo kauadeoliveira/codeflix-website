@@ -6,8 +6,6 @@ import { MyContext } from "@/context/MyContext";
 import { Menu } from "./components/Menu";
 import { Search } from "./components/Search";
 
-
-
 export const Header = () => {
     const { setOpenMenu, setOpenSearch } = useContext(MyContext);
 
@@ -16,7 +14,7 @@ export const Header = () => {
 
     return(
         <>
-            <header className='w-full flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2  top-0 left-0 z-[2000] sticky'>
+            <header className='w-full h-[52px] flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2 top-0 sticky'>
                 <button onClick={handleOpenMenu} className='block md:hidden'>
                     <HiMenu />
                 </button>

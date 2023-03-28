@@ -2,11 +2,8 @@ import { useWindowSize } from '@/hooks';
 import { ChildrenType } from '@/types/children';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { SliderProps } from './types';
 
-type SliderProps = {
-    children: ChildrenType;
-    title?: Capitalize<string>;
-}
 export const Slider = ({ children, title }: SliderProps) => {
     const { width } = useWindowSize();
 
@@ -62,7 +59,7 @@ export const Slider = ({ children, title }: SliderProps) => {
       }
 
     return(
-        <div className="p-2">
+        <div className="p-3">
             <h2 className="text-2xl font-bold mb-2 ml-1 capitalize font-poppins">{title}</h2>
             <Carousel
              responsive={responsive}

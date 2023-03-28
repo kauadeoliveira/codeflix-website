@@ -1,16 +1,7 @@
 import { useWindowSize } from "@/hooks"
 import { Button } from "../Button";
 import { HiPlay, HiDotsCircleHorizontal } from "react-icons/hi"
-
-type PosterProps = {
-    title: string;
-    overview: string;
-    images: {
-        lg: string;
-        sm: string;
-    };
-    route: string;
-}
+import { PosterProps } from "./types";
 
 export const Poster = ({ title, overview, images, route }: PosterProps) => {
     const { width } = useWindowSize();

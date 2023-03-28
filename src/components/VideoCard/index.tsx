@@ -1,11 +1,6 @@
 import { motion } from "framer-motion"
 import Image from "next/image";
-
-type VideoCardType = {
-    title: string;
-    img: string;
-    route: string;
-}
+import { VideoCardType } from "./types";
 
 export const VideoCard = ({ title, img, route }: VideoCardType) => {
     return(

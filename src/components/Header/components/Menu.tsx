@@ -8,7 +8,6 @@ import { removeRepeatGenre } from '@/utils';
 import { useContext, useEffect, useState } from 'react';
 import { HiX } from "react-icons/hi"
 import { useQuery } from 'react-query';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 export const Menu = () => {
     const { openMenu, setOpenMenu } = useContext(MyContext);
@@ -16,6 +15,7 @@ export const Menu = () => {
 
     const movie_genres = useQuery('movie_genres', () => getGenres('movie'));
     const serie_genres = useQuery('serie_genres', () => getGenres('tv'));
+    
     const [allGenres, setAllGenres] = useState<Genre[]>([]);
 
     useEffect(() => {
@@ -28,7 +28,8 @@ export const Menu = () => {
     return(
         <div 
          className={`block h-screen w-full ${openMenu ? "transform-none" : "translate-y-[-100vh]"}
-         duration-500 transition-transform bg-main-color md:hidden fixed top-0 left-0 z-[3000] overflow-auto`}>
+         duration-500 transition-transform bg-main-color md:hidden fixed top-0 left-0 z-[3000] overflow-auto p-3`}
+        >
             <div className='flex justify-end w-full'>
                 <button onClick={handleCloseMenu} className='opacity-80 hover:opacity-100 text-2xl'>
                     <HiX />
@@ -36,13 +37,13 @@ export const Menu = () => {
             </div>
             <nav className='text-xl flex flex-col gap-3 px-3'>
                 <span className="font-poppins font-bold uppercase border-b">
-                    <a href="#">Minha Lista</a>
-                </span>
-                <span className="font-poppins font-bold uppercase border-b">
                     <a href="#">Filmes</a>
                 </span>
                 <span className="font-poppins font-bold uppercase border-b">
                     <a href="#">Series</a>
+                </span>
+                <span className="font-poppins font-bold uppercase border-b">
+                    <a href="#">Minha Lista</a>
                 </span>
                 <Accordion title="Categorias">
                     <ul className="flex flex-wrap">

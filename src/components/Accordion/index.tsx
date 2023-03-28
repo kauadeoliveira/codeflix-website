@@ -1,14 +1,8 @@
 "use client"
 
-import { ChildrenType } from '@/types/children';
 import { useState } from 'react';
 import { HiMinusSm, HiPlusSm } from 'react-icons/hi';
-
-type AccordionType = {
-    title: string;
-    children: ChildrenType;
-}
-
+import { AccordionType } from './types';
 
 export const Accordion = ({ title, children }: AccordionType) => {
     const [openAccordion, setOpenAccordion] = useState<boolean>(false);

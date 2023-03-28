@@ -1,12 +1,10 @@
 "use client"
 
 import { LoadingCards, Poster, Slider, VideoCard } from '@/components'
-import { getCategory, getGenres } from '@/services/http'
+import { getCategory } from '@/services/http'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { Movie } from '@/types/movie'
-import { getDetails } from '@/services/http/getDetails'
-import { useState } from "react"
 
 
 export default function Home() {
@@ -17,11 +15,11 @@ export default function Home() {
   const top_series = useQuery('top_series', () => getCategory('tv', 'top_rated'));
   const popular_series = useQuery('popular_series', () => getCategory('tv', 'popular'));
 
-  useEffect(() => console.log(popular_series.data), [popular_series.isLoading])
+  // useEffect(() => console.log(), [])
 
   return (
     <>
-      <main className="bg-main-color w-screen flex flex-col gap-3 mb-32">
+      <main className="w-screen flex flex-col gap-3 mb-32">
         <Poster 
          images={{
           lg: latest_movies.data?.results[0].backdrop_path,
