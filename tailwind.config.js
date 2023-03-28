@@ -15,6 +15,8 @@ module.exports = {
       colors: {
         'main-color': '#121212',
         'secondary-color': '#1e1e1e',
+        'text-disabled': 'rgba(255, 255, 255, 0.3)',
+        'bg-disabled': 'rgba(255, 255, 255, 0.12)'
       }
     },
   },
