@@ -17,22 +17,24 @@ export default function Home() {
   const top_series = useQuery('top_series', () => getCategory('tv', 'top_rated'));
   const popular_series = useQuery('popular_series', () => getCategory('tv', 'popular'));
 
+  useEffect(() => console.log(popular_series.data), [popular_series.isLoading])
+
   return (
     <>
-      <div className="bg-main-color w-screen flex flex-col gap-3">
+      <main className="bg-main-color w-screen flex flex-col gap-3 mb-32">
         <Poster 
          images={{
           lg: latest_movies.data?.results[0].backdrop_path,
           sm: latest_movies.data?.results[0].poster_path
          }}
          route="#"
-         title="Cocaine Bear"
+         title={latest_movies.data?.results[0].title}
          overview={latest_movies.data?.results[0].overview}
         />
 
         {latest_movies.isLoading ? <LoadingCards /> : (
           <Slider title="Filmes Lançados Recentemente">
-            {latest_movies.data.results.map((video: Movie) => (
+            {latest_movies.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
               <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
             ))}
           </Slider>
@@ -40,7 +42,7 @@ export default function Home() {
 
         {top_movies.isLoading ? <LoadingCards /> : (
           <Slider title="Filmes Com as Melhores Avaliações">
-            {top_movies.data.results.map((video: Movie) => (
+            {top_movies.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
               <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
             ))}
           </Slider>
@@ -48,7 +50,7 @@ export default function Home() {
 
         {top_series.isLoading ? <LoadingCards /> : (
           <Slider title="Series Com as Melhores Avaliações">
-            {top_series.data.results.map((video: Movie) => (
+            {top_series.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
               <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
             ))}
           </Slider>
@@ -56,7 +58,7 @@ export default function Home() {
 
         {popular_movies.isLoading ? <LoadingCards /> : (
           <Slider title="Filmes Tendência">
-            {popular_movies.data.results.map((video: Movie) => (
+            {popular_movies.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
               <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
             ))}
           </Slider>
@@ -64,12 +66,12 @@ export default function Home() {
 
         {popular_series.isLoading ? <LoadingCards /> : (
           <Slider title="Series Tendência">
-            {popular_series.data.results.map((video: Movie) => (
+            {popular_series.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
               <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
             ))}
           </Slider>
         )}
-      </div>
+      </main>
     </>
   )
 }

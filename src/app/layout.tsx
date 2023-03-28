@@ -3,7 +3,7 @@
 import './globals.css'
 import ContextProvider from '@/context/MyContext'
 import { QueryClientProvider } from 'react-query'
-import { Header } from '@/components';
+import { Footer, Header } from '@/components';
 import { queryClient } from '@/utils';
 
 export default function RootLayout({
@@ -23,6 +23,7 @@ export default function RootLayout({
             <QueryClientProvider client={queryClient}>
               <Header />
               {children}
+              <Footer />
             </QueryClientProvider>
           </ContextProvider>
         </body>

@@ -9,9 +9,9 @@ export const Button = ({ children, mode, route, onClick, Icon }: ButtonType) => 
              className={
                `${mode === 'dark' ? 'bg-zinc-800 text-white' : 'bg-[#FAFBFC] text-black'}
                ${mode === 'dark' ? 'hover:bg-zinc-700' : 'hover:bg-[#c8c8c8]'}
-               font-poppins font-semibold capitalize rounded-md flex justify-center items-center gap-[2px] p-2 min-w-[120px]`}
+               font-poppins font-semibold capitalize rounded-md flex justify-center items-center gap-[2px] p-2 min-w-[120px] text-sm`}
             >
-                {Icon && <Icon />}
+                {Icon && <Icon className="text-lg"/>}
                 {children}
             </a>
         )
@@ -23,7 +23,7 @@ export const Button = ({ children, mode, route, onClick, Icon }: ButtonType) => 
              className={
                 `${mode === 'dark' ? 'bg-zinc-800 text-white' : 'bg-[#FAFBFC] text-black'}
                 ${mode === 'dark' ? 'hover:bg-zinc-700' : 'hover:bg-[#c8c8c8]'}
-                font-poppins font-semibold capitalize rounded-md flex justify-center items-center gap-[2px] p-2 min-w-[120px]`}
+                font-poppins font-semibold capitalize rounded-md flex justify-center items-center gap-[2px] p-2 min-w-[120px] text-sm`}
             >
                 {Icon && <Icon className="text-lg"/>}
                 {children}

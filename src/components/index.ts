@@ -5,4 +5,5 @@ export { IconButton } from "./IconButton";
 export { VideoCard } from "./VideoCard";
 export { Poster } from "./Poster";
 export { Slider } from "./Slider";
-export { LoadingCards } from "./LoadingCards"
+export { LoadingCards } from "./LoadingCards";
+export { Footer } from "./Footer";
