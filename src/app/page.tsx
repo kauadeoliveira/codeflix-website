@@ -1,8 +1,8 @@
 "use client"
 
-import { LoadingCards, Poster, Slider, VideoCard } from '@/components'
+import { LoadingCards, LoadingScreen, Poster, Slider, VideoCard } from '@/components'
 import { getCategory } from '@/services/http'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { Movie } from '@/types/movie'
 
@@ -15,20 +15,28 @@ export default function Home() {
   const top_series = useQuery('top_series', () => getCategory('tv', 'top_rated'));
   const popular_series = useQuery('popular_series', () => getCategory('tv', 'popular'));
 
-  // useEffect(() => console.log(), [])
-
+  const [loading, setLoading] = useState<boolean>(true)
+  
   return (
     <>
-      <main className="w-screen flex flex-col gap-3 mb-32">
-        <Poster 
-         images={{
-          lg: latest_movies.data?.results[0].backdrop_path,
-          sm: latest_movies.data?.results[0].poster_path
-         }}
-         route="#"
-         title={latest_movies.data?.results[0].title}
-         overview={latest_movies.data?.results[0].overview}
-        />
+      {
+        loading ? 
+        (
+          <LoadingScreen />
+        ):
+        (
+          <main className="w-screen flex flex-col gap-3 mb-32">
+        {!latest_movies.isLoading && (
+          <Poster 
+          images={{
+            lg: latest_movies.data?.results[0].backdrop_path,
+            sm: latest_movies.data?.results[0].poster_path
+          }}
+          route="#"
+          title={latest_movies.data?.results[0].title}
+          overview={latest_movies.data?.results[0].overview}
+          />
+        )}
 
         {latest_movies.isLoading ? <LoadingCards /> : (
           <Slider title="Filmes Lançados Recentemente">
@@ -70,6 +78,8 @@ export default function Home() {
           </Slider>
         )}
       </main>
+        )
+      }
     </>
   )
 }

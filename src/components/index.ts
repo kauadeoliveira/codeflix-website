@@ -7,3 +7,4 @@ export { Poster } from "./Poster";
 export { Slider } from "./Slider";
 export { LoadingCards } from "./LoadingCards";
 export { Footer } from "./Footer";
+export { LoadingScreen } from "./LoadingScreen"

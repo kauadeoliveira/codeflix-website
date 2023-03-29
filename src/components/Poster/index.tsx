@@ -9,15 +9,13 @@ export const Poster = ({ title, overview, images, route }: PosterProps) => {
         <div className="relative">
             {/* Backdrop effect */}
            <div 
-             className={`
-             bg-main-color opacity-75 w-full h-full absolute top-0 left-0
+             className={`bg-main-color opacity-75 w-full h-full absolute top-0 left-0
              ${width && width >= 768 ? 'block' : 'hidden'}`} 
             />
 
            {/* Titulo e descrição do filme que só aparecerá quando a largura da janela for superior a 768px */}
            <div
-             className={`
-             absolute w-1/2 top-1/3 left-4 font-poppins flex flex-col gap-3
+             className={`absolute w-1/2 top-1/3 left-4 font-poppins flex flex-col gap-3
              ${width && width >= 768 ? 'flex' : 'hidden'}`}
             >
                 <h2 className={`font-bold ${width && width > 1024 ? 'text-5xl' : 'text-3xl'}`}>
