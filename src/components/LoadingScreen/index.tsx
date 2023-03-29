@@ -4,7 +4,9 @@ import { ClipLoader } from "react-spinners"
 
 export const LoadingScreen = () => {
     return(
-        <div className="fixed top-0 bottom-0 bg-main-color w-full h-screen flex flex-col justify-center items-center gap-10">
+        <div 
+         className="fixed top-0 bottom-0 bg-main-color w-full h-screen flex flex-col justify-center items-center gap-10 z-[99999]"
+        >
             <motion.h1
              className='font-berkshire text-5xl text-rose-500'
              initial={{ opacity: 0, scale: 0.5 }}

@@ -2,11 +2,12 @@ import { useWindowSize } from "@/hooks"
 import { Button } from "../Button";
 import { HiPlay, HiDotsCircleHorizontal } from "react-icons/hi"
 import { PosterProps } from "./types";
+import { useEffect } from "react";
 
 export const Poster = ({ title, overview, images, route }: PosterProps) => {
     const { width } = useWindowSize();
     return(
-        <div className="relative">
+        <div className={`relative w-full bg-main-color min-h-[550px]`}>
             {/* Backdrop effect */}
            <div 
              className={`bg-main-color opacity-75 w-full h-full absolute top-0 left-0

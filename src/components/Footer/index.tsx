@@ -2,6 +2,7 @@
 
 import {HiChevronUp } from "react-icons/hi"
 import { isBrowser } from "@/constants";
+import { motion } from "framer-motion";
 
 export const Footer = () => {
 
@@ -14,7 +15,7 @@ export const Footer = () => {
     return(
         <footer>
             <div className="flex w-10/12 border-t border-text-disabled m-auto p-4 justify-between">
-                <div className="flex gap-4 text-text-disabled">
+                <div className="flex gap-4 text-text-disabled text-xs">
                     <p>© 2023 Codeflix, Inc.</p>
                     <ul className="flex gap-2">
                         <li className="hover:text-white hover:underline">
@@ -29,9 +30,14 @@ export const Footer = () => {
                     </ul>
                 </div>
                 <div>
-                    <button className="bg-slate-50 text-black rounded-full text-xl hover:bg-slate-200" onClick={backToTop} title="Voltar ao topo da página">
+                    <motion.button
+                     className="bg-slate-50 text-black rounded-full text-xl hover:bg-slate-200"
+                     onClick={backToTop}
+                     title="Voltar ao topo da página"
+                     whileHover={{ y: -3 }}
+                    >
                         <HiChevronUp />
-                    </button>
+                    </motion.button>
                 </div>
             </div>
         </footer>
