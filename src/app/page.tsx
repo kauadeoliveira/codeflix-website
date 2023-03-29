@@ -5,6 +5,7 @@ import { getCategory } from '@/services/http'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { Movie } from '@/types/movie'
+import { useLoading } from '@/hooks/useLoading'
 
 
 export default function Home() {
@@ -15,8 +16,11 @@ export default function Home() {
   const top_series = useQuery('top_series', () => getCategory('tv', 'top_rated'));
   const popular_series = useQuery('popular_series', () => getCategory('tv', 'popular'));
 
-  const [loading, setLoading] = useState<boolean>(true)
-  
+  const requests = [top_movies, popular_movies, latest_movies, top_series, popular_series];
+
+  const { loading } = useLoading(requests, 3000); 
+
+  useEffect(() => console.log(loading), [loading])
   return (
     <>
       {
