@@ -3,14 +3,21 @@
 import { HiMenu, HiSearch } from "react-icons/hi";
 import { useContext } from 'react'
 import { MyContext } from "@/context/MyContext";
-import { Menu } from "./components/Menu";
-import { Search } from "./components/Search";
-import { CategoriesMenu } from "./components/CategoriesMenu";
+import { Menu, Search, CategoriesMenu } from "./components";
 
+/* Header do site */
 export const Header = () => {
+/*
+    Dois sets de estados:
+    - setOpenMenu define se o Menu vai estar aberto ou fechado.
+    - setOpenSearch define se o Search vai estar aberto ou fechado.
+*/
     const { setOpenMenu, setOpenSearch } = useContext(MyContext);
 
+    // Altera o estado do Menu de fechado para aberto.
     const handleOpenMenu = () => setOpenMenu?.(true);
+
+    // Altera o estado de Search de fechado para aberto.
     const handleOpenSearch = () => setOpenSearch?.(true);
 
     return(
@@ -47,13 +54,18 @@ export const Header = () => {
                     >
                         Minha Lista
                     </a>
+                    {/* Menu que lista todos os generos disponiveis. (DESKTOP) */}
                     <CategoriesMenu />
                 </nav>
                 <button onClick={handleOpenSearch}>
                     <HiSearch />
                 </button>
             </header>
+
+            {/* Menu que vai conter toda informação do nosso Header (MOBILE, TABLET) */}
             <Menu />
+
+            {/* Menu onde vai conter toda a parte de pesquisa de filmes ou series do site. */}
             <Search />
         </>
     )

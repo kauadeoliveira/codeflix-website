@@ -1,7 +1,22 @@
-import { motion } from "framer-motion"
 import { ClipLoader } from "react-spinners"
+/* 
+    - react-spinners é uma biblioteca de componentes com animações de loading já prontas.
+    - ClipLoader é um dos componentes de loading de react-spinners.
+*/
+
+import { motion } from "framer-motion"
+/* 
+    - framer-motion é uma biblioteca de animações.
+    - motion é um componente otimizado para animações de 60fps.
+    - Há um motion para cada elemento HTML, por exemplo <motion.div>, <motion.button>, etc.
+    - Eles funcionam exatamente como uma tag HTML comum, mas oferecem props que nos permite fazer animações
+*/
 
 
+/* 
+    LoadingScreen é uma Tela de Carregamento:
+    Usada no momento em que os dados da api ainda não foram recebidos
+*/
 export const LoadingScreen = () => {
     return(
         <div 

@@ -1,3 +1,8 @@
+/* 
+    Esse arquivo tem uma unica função: exportar componentes.
+    Através desse tipo de exportação eu consigo importar em outros lugares da aplicação de uma forma mais simples e limpa.
+*/
+
 export { Accordion } from "./Accordion";
 export { Button } from "./Button";
 export { Header } from "./Header";

@@ -2,8 +2,17 @@ import { useWindowSize } from "@/hooks"
 import { Button } from "../Button";
 import { HiPlay, HiDotsCircleHorizontal } from "react-icons/hi"
 import { PosterProps } from "./types";
-import { useEffect } from "react";
 
+/* 
+    Componente de Poster que ficará no topo de quase todas as páginas da aplicação. Ele receberá algumas caracteristicas de um filme ou serie.
+
+    @params {string} title - Titulo da serie/filme que será mostrado bem grande no Poster.
+    @params {string} overview - Sinopse da Serie/filme que será mostrado no Poster.
+    @params {objeto} images - Um objeto que contém 2 propriedades `lg` e `sm`:
+        - lg: recebe uma imagem grande para ser usada quando o tamanho da janela for superior a 768px
+        - sm: recebe uma imagem pequena para ser usada quando o tamanho da janela for inferior a 768px
+    @params {string} route - Rota do filme que está no Poster.
+*/
 export const Poster = ({ title, overview, images, route }: PosterProps) => {
     const { width } = useWindowSize();
     return(
@@ -40,6 +49,7 @@ export const Poster = ({ title, overview, images, route }: PosterProps) => {
                 </picture>
             </div>
 
+            {/* Botoes de `Trailer` e `Saiba Mais` (Mobile) */}
             <div className={`w-full absolute bottom-3 gap-3 justify-center ${width && width < 768 ? 'flex' : 'hidden'}`}>
                 <Button mode="light" Icon={HiPlay}>Trailer</Button>
                 <Button mode="dark" route={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>

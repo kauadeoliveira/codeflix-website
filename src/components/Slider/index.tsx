@@ -3,9 +3,21 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { SliderProps } from './types';
 
+/* 
+    O componente Slider é usado para exibir uma lista de itens em um carrossel horizontal.
+    Ele usa o react-multi-carousel para implementar o carrossel.
+
+    @params {children} children - Itens que serão exibidos no carrosel.
+    @params {string} title - Titulo que será exibido na parte superior do carrosel. 
+*/
 export const Slider = ({ children, title }: SliderProps) => {
+    // width é uma propriedade do meu hook `useWindowSize` que retorna o valor da largura atual da janela
     const { width } = useWindowSize();
 
+    /* 
+        Como o próprio nome já diz `responsive` é um objeto onde farei as configurações de responsividade do meu Carrosel.
+        Tenho varias propriedades dentro dele, cada uma indica um comportamento diferente pro meu Carrosel baseado na largura atual da janela.
+    */
     const responsive = {
         mobile_sm: {
             breakpoint: { max: 425, min: 0 },

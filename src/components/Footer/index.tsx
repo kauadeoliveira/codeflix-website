@@ -2,10 +2,20 @@
 
 import {HiChevronUp } from "react-icons/hi"
 import { isBrowser } from "@/constants";
-import { motion } from "framer-motion";
 
+import { motion } from "framer-motion";
+/* 
+    - framer-motion é uma biblioteca de animações.
+    - motion é um componente otimizado para animações de 60fps.
+    - Há um motion para cada elemento HTML, por exemplo <motion.div>, <motion.button>, etc.
+    - Eles funcionam exatamente como uma tag HTML comum, mas oferecem props que nos permite fazer animações
+*/
+
+
+// Componente Footer que estará presente em todas as páginas da aplicação
 export const Footer = () => {
 
+    // Função que ao ser chamada rola a página para o topo.
     const backToTop = () => {
         if(isBrowser()){
             window.scrollTo({top: 0, behavior: 'smooth'});

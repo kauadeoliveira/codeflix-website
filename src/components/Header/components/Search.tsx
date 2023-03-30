@@ -4,8 +4,16 @@ import { MyContext } from "@/context/MyContext"
 import { useContext } from "react"
 import { HiX } from "react-icons/hi"
 
+/* 
+    Menu onde vai conter toda a parte de pesquisa de filmes ou series do site.
+
+    OBS: utilizado só no tamanho mobile da janela.
+*/
 export const Search = () => {
+    // Estado que indica se o menu está aberto ou fechado. Altero ele através de um botão que fica lá em <Header /> por isso usei context.
     const { openSearch, setOpenSearch } = useContext(MyContext);
+
+    // Altera o estado do menu para fechado.
     const handleCloseSearch = () => setOpenSearch?.(false);
 
     return(

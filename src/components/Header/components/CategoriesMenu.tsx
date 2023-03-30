@@ -1,8 +1,22 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
 import { getGenres } from "@/services/http";
 import { Genre } from "@/types/utils/genre";
 import { removeRepeatGenre } from "@/utils";
+
+// Esse componente usa a biblioteca react-query para fazer buscas a apis e gerenciar o estado de cache.
+import { useQuery } from "react-query";
+/* 
+    React Query é uma biblioteca de gerenciamento de estado em cache para React que ajuda a lidar com dados assíncronos. Ele fornece uma maneira fácil de buscar, armazenar em cache e atualizar dados, e também oferece recursos como refetching automático, cancelamento de solicitação e gerenciamento de cache inteligente.
+
+    Importei o hook `useQuery` para fazer buscas a apis, ele facilita bastante esse trabalho. 
+*/
+
+/* 
+    Um menu que abre ao clicar em "Categories" e fecha quando clicamos em qualquer lugar da página.
+    Dentro dele vamos listar todos os generos de series e filmes disponiveis.
+
+    OBS: Utilizado apenas no modo tablet e desktop da janela
+*/
 
 export const CategoriesMenu = () => {
     // Estado que indica se o menu está aberto ou fechado
@@ -30,8 +44,8 @@ export const CategoriesMenu = () => {
     }, [movie_genres.isLoading, serie_genres.isLoading]);
 
     
-    /* Quando o menu estiver aberto quero poder fecha-lo clicando em qualquer lugar da tela.
-    Portanto esse useEffect adiciona mousedown event diretamente em `document` quando o estado openCategoriesMenu for true */
+    
+    // Adiciona mousedown event diretamente em `document` quando o estado openCategoriesMenu for true
     useEffect(() => {
         if(openCategoriesMenu){
             document.addEventListener('mousedown', handleCloseCategoriesMenu);
