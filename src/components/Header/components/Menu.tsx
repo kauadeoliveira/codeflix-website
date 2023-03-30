@@ -3,7 +3,7 @@
 import { Accordion } from '@/components/Accordion';
 import { MyContext } from '@/context/MyContext';
 import { getGenres } from '@/services/http';
-import { Genre } from '@/types/genre';
+import { Genre } from '@/types/utils/genre';
 import { removeRepeatGenre } from '@/utils';
 import { useContext, useEffect, useState } from 'react';
 import { HiX } from "react-icons/hi"

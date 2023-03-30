@@ -1,4 +1,4 @@
-import { ButtonType } from "@/types/button";
+import { ButtonType } from "@/types/components"
 
 export const Button = ({ children, mode, route, onClick, Icon }: ButtonType) => {
     if(route){

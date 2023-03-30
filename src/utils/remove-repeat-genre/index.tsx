@@ -1,4 +1,4 @@
-import { Genre } from "@/types/genre";
+import { Genre } from "@/types/utils/genre";
 
 export function removeRepeatGenre(array: Genre[]): Genre[] {
     const newArray: Genre[] = [];

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChildrenType } from "@/types/children";
+import { ChildrenType } from "@/types/utils/children";
 import { createContext, useState } from "react"
 
 

@@ -1,4 +1,4 @@
-import { ChildrenType } from "./children";
+import { ChildrenType } from "../utils/children";
 
 export type ButtonType = {
     children: ChildrenType;

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { LoadingCards, LoadingScreen, Poster, Slider, VideoCard } from '@/components'
 import { getCategory } from '@/services/http'
-import { Movie } from '@/types/movie'
+import { Movie } from '@/types/utils/movie'
 import { useLoading } from '@/hooks'
 
 

@@ -1,7 +1,7 @@
 import { apiKey } from "@/constants";
-import { Category } from "@/services/types/category";
-import { Type } from "@/services/types/type"
+import { Type } from "@/types/api";
 import axios from "axios"
+import { Category } from "./types";
 
 export async function getCategory(type: Type, category: Category) {
     const response = await axios.get(

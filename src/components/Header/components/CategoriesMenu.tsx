@@ -1,8 +1,8 @@
-import { getGenres } from "@/services/http";
-import { Genre } from "@/types/genre";
-import { removeRepeatGenre } from "@/utils";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
+import { getGenres } from "@/services/http";
+import { Genre } from "@/types/utils/genre";
+import { removeRepeatGenre } from "@/utils";
 
 export const CategoriesMenu = () => {
     // Estado que indica se o menu está aberto ou fechado

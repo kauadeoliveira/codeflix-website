@@ -1,5 +1,5 @@
 import { apiKey } from "@/constants"
-import { Type } from "@/services/types/type"
+import { Type } from "@/types/api";
 import axios from "axios"
 
 
