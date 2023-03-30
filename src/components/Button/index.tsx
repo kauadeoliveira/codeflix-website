@@ -1,6 +1,6 @@
 import type { ButtonType } from "@/types/components"
 
-// Cada modo diferente do botão recebe um conjunto de classes diferentes.
+// Um conjunto de classes tailwind para cada modo do Button.
 const buttonClasses = {
     dark: 'bg-zinc-800 text-white hover:bg-zinc-700',
     light: 'bg-slate-50 text-black hover:bg-slate-200',

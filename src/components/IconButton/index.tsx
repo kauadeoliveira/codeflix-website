@@ -1,4 +1,16 @@
-import { ButtonType } from "@/types/components/button"
+import type { ButtonType } from "@/types/components/button"
+
+// Um conjunto de classes tailwind para cada modo do Button.
+const buttonClasses = {
+    dark: 'text-black',
+    light: 'text-white',
+    disabled: 'text-text-disabled'
+}
+
+// Essa função retorna uma propriedade do objeto `buttonClasses` de acordo com o argumento recebido. Esse argumento é do sub-tipo `mode` que faz parte do tipo `ButtonType`, ou seja, apenas as opções "dark", "light" ou "disabled" são permitidas.
+const getButtonClasses = (mode: ButtonType['mode']) => buttonClasses[mode];
+
+
 /*
     Um componente de botão que possui 3 opções de estilos disponiveis e também aceita icones.
 
@@ -10,31 +22,23 @@ import { ButtonType } from "@/types/components/button"
 */
 
 export const IconButton = ({ children, Icon, mode, onClick, href }: ButtonType) => {
-    // Se Button receber alguma rota, ele será uma tag HTML <a>
-    if(href){
-        return(
-            <a
-             href={href}
-             onClick={onClick}
-             className={`text-[10px] font-poppins flex flex-col items-center font-semibold
-             ${mode === 'dark' ? 'text-black' : mode === 'light' ? 'text-white' : 'text-text-disabled'}`}
-            >
-                {Icon && <Icon />}
-                {children}
-            </a>
-        )
+    // Seleciona um conjunto de classes entre `dark`, `light` ou `disabled` baseado no valor da prop `mode`
+    const buttonClass = getButtonClasses(mode);
+
+    // Definindo os atributos HTML e eventos de acordo com as props recebidas
+    const buttonProps = {
+        href: mode !== 'disabled' ? href : undefined,
+        onClick: mode !== 'disabled' ? onClick : undefined,
+        className: `text-[10px] font-poppins flex flex-col items-center font-semibold ${buttonClass}`,
     }
-    // Se o Button não receber nenhuma rota, ele será uma tag HTML <button>
-    else{
-        return(
-            <button
-             onClick={onClick}
-             className={`text-[10px] font-poppins flex flex-col items-center font-semibold
-             ${mode === 'dark' ? 'text-black' : mode === 'light' ? 'text-white' : 'text-text-disabled'}`}
-            >
-                {Icon && <Icon className="text-xl"/>}
-                {children}
-            </button>
-        )
-    }
+
+    // Define se Button será uma tag HTML <a> ou <button>
+    const Component = href ? 'a' : 'button';
+
+    return(
+        <Component {...buttonProps}>
+            {Icon && <Icon />}
+            {children}
+        </Component>
+    )
 }
