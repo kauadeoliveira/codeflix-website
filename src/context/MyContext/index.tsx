@@ -19,9 +19,11 @@ type MyContextType = {
 export const MyContext = createContext<Partial<MyContextType>>({});
 
 export default function ContextProvider({ children }: ContextProviderProps) {
+    // Estado que define se o Menu está aberto ou fechado.
     const [openMenu, setOpenMenu] = useState<boolean>(false);
-    const [openSearch, setOpenSearch] = useState<boolean>(false);
 
+    // Estado que define se Search está aberto ou fechado.
+    const [openSearch, setOpenSearch] = useState<boolean>(false);
     return(
         <MyContext.Provider value={{
             openMenu,

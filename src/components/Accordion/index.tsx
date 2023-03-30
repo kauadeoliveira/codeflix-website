@@ -12,18 +12,18 @@ import { AccordionType } from './types';
 */
 export const Accordion = ({ title, children }: AccordionType) => {
     // Estado que indica se o Accordion ta aberto ou fechado.
-    const [openAccordion, setOpenAccordion] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     // Altera o estado do Accordion para aberto ou fechado.
-    const handleOpenAccordion = () => setOpenAccordion(!openAccordion);
+    const toggleAccordion = () => setIsOpen(!isOpen);
 
     return(
         <div>
-            <div onClick={handleOpenAccordion} className='uppercase font-bold flex items-center justify-between cursor-pointer'>
+            <div onClick={toggleAccordion} className='uppercase font-bold flex items-center justify-between cursor-pointer'>
                 {title}
-                {openAccordion ? <HiMinusSm /> : <HiPlusSm />}
+                {isOpen ? <HiMinusSm /> : <HiPlusSm />}
             </div>
-            <div className={`${openAccordion ? "block" : "hidden"} text-base p-2 `}>
+            <div className={`${isOpen ? "block" : "hidden"} text-base p-2 `}>
                 {children}
             </div>
         </div>
