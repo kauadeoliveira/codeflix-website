@@ -9,12 +9,12 @@ import { ButtonType } from "@/types/components/button"
     @params {component} Icon - Icone do botão.
 */
 
-export const IconButton = ({ children, Icon, mode, onClick, route }: ButtonType) => {
+export const IconButton = ({ children, Icon, mode, onClick, href }: ButtonType) => {
     // Se Button receber alguma rota, ele será uma tag HTML <a>
-    if(route){
+    if(href){
         return(
             <a
-             href={route}
+             href={href}
              onClick={onClick}
              className={`text-[10px] font-poppins flex flex-col items-center font-semibold
              ${mode === 'dark' ? 'text-black' : mode === 'light' ? 'text-white' : 'text-text-disabled'}`}

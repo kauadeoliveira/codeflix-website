@@ -1,4 +1,16 @@
-import { ButtonType } from "@/types/components"
+import type { ButtonType } from "@/types/components"
+
+// Cada modo diferente do botão recebe um conjunto de classes diferentes.
+const buttonClasses = {
+    dark: 'bg-zinc-800 text-white hover:bg-zinc-700',
+    light: 'bg-slate-50 text-black hover:bg-slate-200',
+    disabled: 'bg-bg-disabled text-text-disabled cursor-default'
+}
+
+// Essa função retorna uma propriedade do objeto `buttonClasses` de acordo com o argumento recebido. Esse argumento é do sub-tipo `mode` que faz parte do tipo `ButtonType`, ou seja, apenas as opções "dark", "light" ou "disabled" são permitidas.
+const getButtonClass = (mode: ButtonType['mode']) => buttonClasses[mode];
+
+
 /*
     Um componente de botão que possui 3 opções de estilos disponiveis e também aceita icones.
 
@@ -8,38 +20,28 @@ import { ButtonType } from "@/types/components"
     @params {function} onClick - função que vai ser chamada quando o botão for clicado.
     @params {component} Icon - Icone do botão.
 */
-export const Button = ({ children, mode, route, onClick, Icon }: ButtonType) => {
-    // Se Button receber alguma rota, ele será uma tag HTML <a>
-    if(route){
-        return(
-            <a
-             href={route}
-             onClick={onClick}
-             className={`${mode === 'dark' ? 'bg-zinc-800 text-white' :
-             mode === 'light' ? 'bg-slate-50 text-black' : 'bg-bg-disabled text-text-disabled'}
-             ${mode === 'dark' ? 'hover:bg-zinc-700' : mode === 'light' ? 'hover:bg-slate-200' : ''}
-             ${mode === 'disabled' ? 'cursor-default' : 'cursor-pointer'}
-             font-poppins font-semibold capitalize rounded-md flex justify-center items-center gap-[2px] p-2 min-w-[120px] text-sm`}
-            >
-                {Icon && <Icon className="text-lg"/>}
-                {children}
-            </a>
-        )
+export const Button = ({ children, mode, href, onClick, Icon }: ButtonType) => {
+    // Seleciona um conjunto de classes entre `dark`, `light` ou `disabled` baseado no valor da prop `mode`
+    const buttonClass = getButtonClass(mode)
+
+    // Definindo os atributos HTML e eventos de acordo com as props recebidas
+    const buttonProps = {
+        href: mode !== 'disabled' ? href : undefined,
+        onClick: mode !== 'disabled' ? onClick : undefined,
+        className: `font-poppins font-semibold capitalize rounded-md flex justify-center items-center gap-[2px] p-2 min-w-[120px] text-sm ${buttonClass}`,
     }
-    // Se o Button não receber nenhuma rota, ele será uma tag HTML <button>
-    else{
-        return(
-            <button
-             onClick={onClick}
-             className={`${mode === 'dark' ? 'bg-zinc-800 text-white' :
-             mode === 'light' ? 'bg-slate-50 text-black' : 'bg-bg-disabled text-text-disabled'}
-             ${mode === 'dark' ? 'hover:bg-zinc-700' : mode === 'light' ? 'hover:bg-slate-200' : ''}
-             ${mode === 'disabled' ? 'cursor-default' : 'cursor-pointer'}
-             font-poppins font-semibold capitalize rounded-md flex justify-center items-center gap-[2px] p-2 min-w-[120px] text-sm`}
-            >
-                {Icon && <Icon className="text-lg"/>}
-                {children}
-            </button>
-        )
-    }
+
+    // Define se Button será uma tag HTML <a> ou <button>
+    const Component = href ? 'a' : 'button';
+
+    return(
+        <Component {...buttonProps}>
+            {Icon && <Icon />}
+            {children}
+        </Component>
+    )
 }
+
+
+
+// `buttonClasses` e `getButtonClass` foram definidas fora do escopo do componente por questões de otimização, mas a diferença seria minima se tivesse dentro.

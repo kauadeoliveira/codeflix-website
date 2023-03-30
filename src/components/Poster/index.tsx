@@ -36,7 +36,7 @@ export const Poster = ({ title, overview, images, route }: PosterProps) => {
                 </p>
                 <div className="flex gap-2">
                     <Button mode="light" Icon={HiPlay}>Trailer</Button>
-                    <Button mode="dark" route={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
+                    <Button mode="dark" href={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
                 </div>
            </div>
 
@@ -52,7 +52,7 @@ export const Poster = ({ title, overview, images, route }: PosterProps) => {
             {/* Botoes de `Trailer` e `Saiba Mais` (Mobile) */}
             <div className={`w-full absolute bottom-3 gap-3 justify-center ${width && width < 768 ? 'flex' : 'hidden'}`}>
                 <Button mode="light" Icon={HiPlay}>Trailer</Button>
-                <Button mode="dark" route={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
+                <Button mode="dark" href={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
             </div>
         </div>
     )
