@@ -35,7 +35,6 @@ export const LoadingScreen = () => {
                 Codeflix
             </motion.h1>
             <motion.div
-             className=""
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
              transition={{

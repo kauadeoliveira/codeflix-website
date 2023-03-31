@@ -10,7 +10,6 @@ const buttonClasses = {
 // Essa função retorna uma propriedade do objeto `buttonClasses` de acordo com o argumento recebido. Esse argumento é do sub-tipo `mode` que faz parte do tipo `ButtonType`, ou seja, apenas as opções "dark", "light" ou "disabled" são permitidas.
 const getButtonClasses = (mode: ButtonType['mode']) => buttonClasses[mode];
 
-
 /*
     Um componente de botão que possui 3 opções de estilos disponiveis e também aceita icones.
 
@@ -20,8 +19,8 @@ const getButtonClasses = (mode: ButtonType['mode']) => buttonClasses[mode];
     @params {function} onClick - função que vai ser chamada quando o botão for clicado.
     @params {component} Icon - Icone do botão.
 */
-
 export const IconButton = ({ children, Icon, mode, onClick, href }: ButtonType) => {
+    
     // Seleciona um conjunto de classes entre `dark`, `light` ou `disabled` baseado no valor da prop `mode`
     const buttonClass = getButtonClasses(mode);
 
