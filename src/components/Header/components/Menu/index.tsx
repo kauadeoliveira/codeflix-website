@@ -7,6 +7,7 @@ import { getGenres } from '@/services/http';
 import { removeRepeatGenre } from '@/utils';
 import { Accordion } from '@/components';
 import { Genre } from '@/types/utils';
+import { MenuItem } from './components/MenuItem';
 
 // Esse componente usa a biblioteca react-query para fazer buscas a apis e gerenciar o estado de cache.
 import { useQuery } from 'react-query';
@@ -58,15 +59,9 @@ export const Menu = () => {
                 </button>
             </div>
             <nav className='text-xl flex flex-col gap-3 px-3'>
-                <span className="font-poppins font-bold uppercase border-b">
-                    <a href="#">Filmes</a>
-                </span>
-                <span className="font-poppins font-bold uppercase border-b">
-                    <a href="#">Series</a>
-                </span>
-                <span className="font-poppins font-bold uppercase border-b">
-                    <a href="#">Minha Lista</a>
-                </span>
+                <MenuItem href="/filmes">Filmes</MenuItem>
+                <MenuItem href="/series">Series</MenuItem>
+                <MenuItem href="/minha-lista">Minha Lista</MenuItem>
                 <Accordion title="Categorias">
                     <ul className="flex flex-wrap">
                         {allGenres && (

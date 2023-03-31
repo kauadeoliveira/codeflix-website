@@ -29,13 +29,13 @@ export const Footer = () => {
                     <p>© 2023 Codeflix, Inc.</p>
                     <ul className="flex gap-2">
                         <li className="hover:text-white hover:underline">
-                            <a href="#">Linkedin</a>
+                            <a href="#" target="_blank">Linkedin</a>
                         </li>
                         <li className="hover:text-white hover:underline">
-                            <a href="#">Github</a>
+                            <a href="#" target="_blank">Github</a>
                         </li>
                         <li className="hover:text-white hover:underline">
-                            <a href="#">Email</a>
+                            <a href="#" target="_blank">Email</a>
                         </li>
                     </ul>
                 </div>
@@ -45,6 +45,7 @@ export const Footer = () => {
                      onClick={backToTop}
                      title="Voltar ao topo da página"
                      whileHover={{ y: -3 }}
+                     aria-label="Voltar ao topo da página"
                     >
                         <HiChevronUp />
                     </motion.button>

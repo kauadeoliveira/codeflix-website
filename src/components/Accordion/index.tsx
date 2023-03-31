@@ -10,6 +10,7 @@ import { AccordionType } from './types';
     @params {string} title - O titulo que aparecerá no topo do Accordion.
     @params {children} children - Tudo que for colocado dentro de Accordion será seu conteudo.
 */
+
 export const Accordion = ({ title, children }: AccordionType) => {
     // Estado que indica se o Accordion ta aberto ou fechado.
     const [isOpen, setIsOpen] = useState<boolean>(false);
