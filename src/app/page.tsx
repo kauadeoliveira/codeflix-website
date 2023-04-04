@@ -17,6 +17,7 @@ export default function Home() {
   // Array com todas as requests feitas acima, ao passar para "useLoading" ele me retorna se todas estão ou não no processo de Loading
   const requests = [topMoviesQuery, popularMoviesQuery, latestMoviesQuery, topSeriesQuery, popularSeriesQuery];
 
+  // Hook que verifica se todas requests passadas já foram concluidas.
   const { loading } = useLoading(requests, 3000); 
 
   return (

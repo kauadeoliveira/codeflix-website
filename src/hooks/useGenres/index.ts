@@ -6,6 +6,7 @@ import { apiKey } from "@/constants";
 
 // Esse hook usa a biblioteca react-query para fazer buscas a apis e gerenciar o estado de cache.
 import { useQuery } from "react-query";
+import { removeRepeat } from "@/utils";
 /* 
     React Query é uma biblioteca de gerenciamento de estado em cache para React que ajuda a lidar com dados assíncronos. Ele fornece uma maneira fácil de buscar, armazenar em cache e atualizar dados, e também oferece recursos como refetching automático, cancelamento de solicitação e gerenciamento de cache inteligente.
 
@@ -15,13 +16,6 @@ import { useQuery } from "react-query";
 async function getGenres(type: Type){
     const response = await axios.get(`https://api.themoviedb.org/3/genre/${type}/list?api_key=${apiKey}&language=pt-BR`);
     return response.data;
-}
-
-export function removeRepeatGenre(array: Genre[]): Genre[] {
-    const newArray: Genre[] = [];
-    array.map(genre => newArray.find(g => g.name === genre.name) ? false : newArray.push(genre));
-
-    return newArray
 }
 
 export function useGenres() {
@@ -43,7 +37,7 @@ export function useGenres() {
 
     useEffect(() => {
         if(movieGenresQuery.isSuccess && serieGenresQuery.isSuccess){
-            const concatGenres = removeRepeatGenre(movieGenresQuery.data.genres.concat(serieGenresQuery.data.genres));
+            const concatGenres = removeRepeat(movieGenresQuery.data.genres.concat(serieGenresQuery.data.genres));
             setMovieGenres(movieGenresQuery.data.genres);
             setSerieGenres(serieGenresQuery.data.genres);
             setAllGenres(concatGenres);
