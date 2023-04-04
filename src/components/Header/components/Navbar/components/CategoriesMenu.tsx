@@ -1,15 +1,7 @@
 import { useState, useEffect } from "react";
-import { getGenres } from "@/services/http";
-import { Genre } from "@/types/utils/genre";
-import { removeRepeatGenre } from "@/utils";
+import type { Genre } from "@/types/utils/genre";
+import { useGenres } from "@/hooks";
 
-// Esse componente usa a biblioteca react-query para fazer buscas a apis e gerenciar o estado de cache.
-import { useQuery } from "react-query";
-/* 
-    React Query é uma biblioteca de gerenciamento de estado em cache para React que ajuda a lidar com dados assíncronos. Ele fornece uma maneira fácil de buscar, armazenar em cache e atualizar dados, e também oferece recursos como refetching automático, cancelamento de solicitação e gerenciamento de cache inteligente.
-
-    Importei o hook `useQuery` para fazer buscas a apis, ele facilita bastante esse trabalho. 
-*/
 
 /* 
     Um menu que abre ao clicar em "Categories" e fecha quando clicamos em qualquer lugar da página.
@@ -17,7 +9,6 @@ import { useQuery } from "react-query";
 
     OBS: Utilizado apenas no modo tablet e desktop da janela
 */
-
 export const CategoriesMenu = () => {
     // Estado que indica se o menu está aberto ou fechado
     const [openCategoriesMenu, setOpenCategoriesMenu] = useState(false);
@@ -27,23 +18,9 @@ export const CategoriesMenu = () => {
 
     // Altera o estado do menu para FECHADO
     const handleCloseCategoriesMenu = () => setOpenCategoriesMenu(false);
- 
-    // Nessas duas requests estou buscando todos os GENEROS de series e filmes disponiveis 
-    const movie_genres = useQuery('movie_genres', () => getGenres('movie'));
-    const serie_genres = useQuery('serie_genres', () => getGenres('tv'));
-    
-    // Nesse estado vou armazenar todos os generos de series e filmes juntos.
-    const [allGenres, setAllGenres] = useState<Genre[]>([]);
 
-    // Junta todos os generos recebido de filmes e series em um array só sem repetir nenhum valor
-    useEffect(() => {
-        if(movie_genres.data && serie_genres.data){
-            const concatGenres = removeRepeatGenre(movie_genres.data.genres.concat(serie_genres.data.genres));
-            setAllGenres(concatGenres);
-        }
-    }, [movie_genres.isLoading, serie_genres.isLoading]);
-
-    
+    // Acessa os generos dos filmes e series através desse hook
+    const { data: genres } = useGenres();
     
     // Adiciona mousedown event diretamente em `document` quando o estado openCategoriesMenu for true
     useEffect(() => {
@@ -68,7 +45,7 @@ export const CategoriesMenu = () => {
              ${openCategoriesMenu ? 'block' : 'hidden'}`}
               onMouseDown={handleCloseCategoriesMenu}
             >
-                {allGenres.map((genre: Genre) => (
+                {genres.allGenres.map((genre: Genre) => (
                     <li key={genre.id} className="p-1 hover:bg-secondary-color cursor-pointer">
                         <a href="#">{genre.name}</a>
                     </li>

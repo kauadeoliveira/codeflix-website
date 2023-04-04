@@ -5,3 +5,4 @@
 
 export { useWindowSize } from "./useWindowSize"
 export { useLoading } from "./useLoading"
+export { useGenres } from "./useGenres"
