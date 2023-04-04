@@ -1,13 +1,12 @@
 "use client"
 
-import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { LoadingCards, LoadingScreen, Poster, Slider, VideoCard } from '@/components'
+import { LoadingScreen, Poster } from '@/components'
 import { getCategory } from '@/services/http'
-import { Movie } from '@/types/utils/movie'
-import { useGenres, useLoading } from '@/hooks'
+import { useLoading } from '@/hooks'
+import { renderSlider } from '@/utils'
 
-
+// Homepage
 export default function Home() {
   const topMoviesQuery = useQuery('top_movies', () => getCategory('movie', 'top_rated'));
   const popularMoviesQuery= useQuery('popular_movies', () => getCategory('movie', 'popular'));
@@ -20,7 +19,6 @@ export default function Home() {
 
   const { loading } = useLoading(requests, 3000); 
 
-  useEffect(() => console.log(loading), [loading])
   return (
     <>
       {
@@ -43,45 +41,15 @@ export default function Home() {
             />
           )}
 
-          {latestMoviesQuery.isLoading ? <LoadingCards /> : (
-            <Slider title="Filmes Lançados Recentemente">
-              {latestMoviesQuery.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
-                <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
-              ))}
-            </Slider>
-          )}
+          {renderSlider('Filmes Lançados Recentemente', latestMoviesQuery.data.results, latestMoviesQuery.isLoading)}
 
-          {topMoviesQuery.isLoading ? <LoadingCards /> : (
-            <Slider title="Filmes Com as Melhores Avaliações">
-              {topMoviesQuery.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
-                <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
-              ))}
-            </Slider>
-          )}
+          {renderSlider('Filmes Com as Melhores Avaliações', topMoviesQuery.data.results, topMoviesQuery.isLoading)}
 
-          {topSeriesQuery.isLoading ? <LoadingCards /> : (
-            <Slider title="Series Com as Melhores Avaliações">
-              {topSeriesQuery.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
-                <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
-              ))}
-            </Slider>
-          )}
+          {renderSlider('Series Com as Melhores Avaliações', topSeriesQuery.data.results, topSeriesQuery.isLoading)}
 
-          {popularMoviesQuery.isLoading ? <LoadingCards /> : (
-            <Slider title="Filmes Tendência">
-              {popularMoviesQuery.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
-                <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
-              ))}
-            </Slider>
-          )}
+          {renderSlider('Filmes Tendência', popularMoviesQuery.data.results, popularMoviesQuery.isLoading)}
 
-          {popularSeriesQuery.isLoading ? <LoadingCards /> : (
-            <Slider title="Series Tendência">
-              {popularSeriesQuery.data.results.filter((video: Movie) => video.poster_path).map((video: Movie) => (
-                <VideoCard img={video.poster_path} route="#" title={video.title} key={video.id}/>
-              ))}
-            </Slider>
-          )}
+          {renderSlider('Series Tendência', popularSeriesQuery.data.results, popularSeriesQuery.isLoading)}
         </main>
       )
       }

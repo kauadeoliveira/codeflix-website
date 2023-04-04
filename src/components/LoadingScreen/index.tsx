@@ -22,7 +22,7 @@ export const LoadingScreen = () => {
         <div 
          className="fixed top-0 bottom-0 bg-main-color w-full h-screen flex flex-col justify-center items-center gap-10 z-[99999]"
         >
-            <motion.h1
+            <motion.span
              className='font-berkshire text-5xl text-rose-500'
              initial={{ opacity: 0, scale: 0.5 }}
              animate={{ opacity: 1, scale: 1.5 }}
@@ -30,10 +30,10 @@ export const LoadingScreen = () => {
                 duration: 0.5,
                 delay: 0.3,
                 ease: [0, 0.71, 0.2, 1.01]
-              }}
+             }}
             >
                 Codeflix
-            </motion.h1>
+            </motion.span>
             <motion.div
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}

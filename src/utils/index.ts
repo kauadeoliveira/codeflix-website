@@ -4,3 +4,4 @@
 */
 
 export { queryClient } from "./query-client";
+export { renderSlider } from "./renderSlider"

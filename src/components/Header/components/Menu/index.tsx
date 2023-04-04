@@ -7,7 +7,6 @@ import { Accordion } from '@/components';
 import { MenuItem } from './components/MenuItem';
 import { useGenres } from '@/hooks/useGenres';
 
-
 /* 
     Menu que vai conter toda informação do nosso Header. Através dele vamos conseguir acessar diferentes rotas do site.
     Seu estado natural é fechado, mas ao clicarmos no `botão de Menu` ele abre.

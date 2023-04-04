@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import type { Genre } from "@/types/utils/genre";
 import { useGenres } from "@/hooks";
 
-
 /* 
     Um menu que abre ao clicar em "Categories" e fecha quando clicamos em qualquer lugar da página.
     Dentro dele vamos listar todos os generos de series e filmes disponiveis.
