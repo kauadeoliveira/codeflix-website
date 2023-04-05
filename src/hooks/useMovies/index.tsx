@@ -5,27 +5,63 @@ import { Movie } from "@/types/utils";
 import { removeRepeat } from "@/utils";
 
 export function useMovies(){
+    const [topMovies, setTopMovies] = useState<Movie[]>();
+    const [popularMovies, setPopularMovies] = useState<Movie[]>();
+    const [latestMovies, setLatestMovies] = useState<Movie[]>();
+    const [allMovies, setAllMovies] = useState<Movie[]>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isError, setIsError] = useState<boolean>(false);
+
     const topMoviesQuery = useQuery('top_movies', () => getCategory('movie', 'top_rated'));
     const popularMoviesQuery= useQuery('popular_movies', () => getCategory('movie', 'popular'));
     const latestMoviesQuery = useQuery('latest_movies', () => getCategory('movie', 'now_playing'));
-
-    const [topMovies, setTopMovies] = useState<Movie[]>([]);
-    const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
-    const [latestMovies, setLatestMovies] = useState<Movie[]>([]);
-    const [allMovies, setAllMovies] = useState<Movie[]>([]);
-
-    const [isLoading, setIsLoading] = useState<boolean>(true)
+    
+    useEffect(() => {
+        if(!topMoviesQuery.isLoading && !popularMoviesQuery.isLoading && !latestMoviesQuery.isLoading){
+            setIsLoading(false)
+        }
+    }, [topMoviesQuery.isLoading, popularMoviesQuery.isLoading, latestMoviesQuery.isLoading])
 
     useEffect(() => {
-        const concatMovies = topMoviesQuery.data.results.concat(popularMoviesQuery.data.results, latestMoviesQuery.data.results)
-        const noRepeatMovies = removeRepeat(concatMovies)
-        if(topMoviesQuery.isSuccess && popularMoviesQuery.isSuccess && latestMoviesQuery.isSuccess){
-            setTopMovies(topMoviesQuery.data.results);
-            setPopularMovies(popularMoviesQuery.data.results);
-            setLatestMovies(latestMoviesQuery.data.results);
+        setTopMovies(topMoviesQuery.data?.results);
+        setPopularMovies(popularMoviesQuery.data?.results);
+        setLatestMovies(latestMoviesQuery.data?.results);
+    }, [topMoviesQuery.isLoading, popularMoviesQuery.isLoading, latestMoviesQuery.isLoading])
+
+    useEffect(() => {
+        if(topMoviesQuery.isError && popularMoviesQuery.isError && latestMoviesQuery.isError){
+            setIsError(true)
+        }
+    }, [topMoviesQuery.isError, popularMoviesQuery.isError, latestMoviesQuery.isError])
+    
+    useEffect(() => {
+        if(topMovies && popularMovies && latestMovies){
+            const concatMovies = topMovies.concat(popularMovies, latestMovies);
+            const noRepeatMovies = removeRepeat(concatMovies);
             setAllMovies(noRepeatMovies);
         }
-    }, [topMoviesQuery.data, popularMoviesQuery.data, latestMoviesQuery.data])
+    }, [isLoading])
 
-    return {topMovies, popularMovies, latestMovies, setAllMovies}
+    return {
+        allMovies: {
+            isLoading: isLoading,
+            isError: isError,
+            data: allMovies,
+        },
+        topMovies: {
+            isLoading: topMoviesQuery.isLoading,
+            isError: topMoviesQuery.isError,
+            data: topMovies
+        },
+        popularMovies: {
+            isLoading: popularMoviesQuery.isLoading,
+            isError: popularMoviesQuery.isError,
+            data: popularMovies
+        },
+        latestMovies: {
+            isLoading: latestMoviesQuery.isLoading,
+            isError: latestMoviesQuery.isError,
+            data: latestMovies
+        }
+    }
 }

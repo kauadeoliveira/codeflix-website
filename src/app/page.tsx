@@ -1,59 +1,51 @@
 "use client"
 
-import { useQuery } from 'react-query'
+import { useEffect, useState } from 'react'
 import { LoadingScreen, Poster } from '@/components'
-import { getCategory } from '@/services/http'
-import { useLoading } from '@/hooks'
-import { renderSlider } from '@/utils'
+import { useMovies } from '@/hooks' // Hook que retorna dados de filmes recebidos da Api The Movie DB 
+import { renderSlider } from '@/utils' // Função utilitaria que renderia um Slider de acordo com as informações passadas.
+
 
 // Homepage
 export default function Home() {
-  const topMoviesQuery = useQuery('top_movies', () => getCategory('movie', 'top_rated'));
-  const popularMoviesQuery= useQuery('popular_movies', () => getCategory('movie', 'popular'));
-  const latestMoviesQuery = useQuery('latest_movies', () => getCategory('movie', 'now_playing'));
-  const topSeriesQuery = useQuery('top_series', () => getCategory('tv', 'top_rated'));
-  const popularSeriesQuery = useQuery('popular_series', () => getCategory('tv', 'popular'));
+  // Estado que define se LoadingScreen vai ser renderizada ou não
+  const [renderLoadingScreen, setRenderLoadingScreen] = useState<boolean>(true);
 
-  // Array com todas as requests feitas acima, ao passar para "useLoading" ele me retorna se todas estão ou não no processo de Loading
-  const requests = [topMoviesQuery, popularMoviesQuery, latestMoviesQuery, topSeriesQuery, popularSeriesQuery];
+  // Acessar dados de filmes
+  const { allMovies, popularMovies, latestMovies, topMovies } = useMovies();
 
-  // Hook que verifica se todas requests passadas já foram concluidas.
-  const { loading } = useLoading(requests, 3000); 
+  // Adiciona um tempo de 3s para LoadingScreen continuar sendo renderizada depois que os dados dos filmes já foram recebidos.
+  useEffect(() => {
+    if(!allMovies.isLoading){
+      const timeoutId = setTimeout(() => setRenderLoadingScreen(false), 3000)
+
+      return () => clearTimeout(timeoutId)
+    } 
+  }, [allMovies.isLoading])
 
   return (
     <>
-      {
-        loading ? 
-        (
-          <LoadingScreen />
-        ) 
-        :
-        (
-          <main className="w-screen flex flex-col gap-3 mb-32">
-          {!latestMoviesQuery.isLoading && (
-            <Poster 
-            images={{
-              lg: latestMoviesQuery.data.results[0].backdrop_path,
-              sm: latestMoviesQuery.data.results[0].poster_path
-            }}
-            route="#"
-            title={latestMoviesQuery.data.results[0].title}
-            overview={latestMoviesQuery.data.results[0].overview}
-            />
-          )}
+    {renderLoadingScreen ? <LoadingScreen /> : (
+      <main className="w-screen flex flex-col gap-3 mb-32">
+        {latestMovies.data && (
+          <Poster 
+          images={{
+            lg: latestMovies.data[0].backdrop_path,
+            sm: latestMovies.data[0].poster_path
+          }}
+          route="#"
+          title={latestMovies.data[0].title}
+          overview={latestMovies.data[0].overview}
+          />
+        )}
 
-          {renderSlider('Filmes Lançados Recentemente', latestMoviesQuery.data.results, latestMoviesQuery.isLoading)}
+        {latestMovies.data && renderSlider('Filmes Lançados Recentemente', latestMovies.data, latestMovies.isLoading)}
 
-          {renderSlider('Filmes Com as Melhores Avaliações', topMoviesQuery.data.results, topMoviesQuery.isLoading)}
+        {topMovies.data && renderSlider('Filmes Com as Melhores Avaliações', topMovies.data, topMovies.isLoading)}
 
-          {renderSlider('Series Com as Melhores Avaliações', topSeriesQuery.data.results, topSeriesQuery.isLoading)}
-
-          {renderSlider('Filmes Tendência', popularMoviesQuery.data.results, popularMoviesQuery.isLoading)}
-
-          {renderSlider('Series Tendência', popularSeriesQuery.data.results, popularSeriesQuery.isLoading)}
-        </main>
-      )
-      }
+        {popularMovies.data && renderSlider('Filmes Tendência', popularMovies.data, popularMovies.isLoading)}
+     </main>
+    )}
     </>
   )
 }
