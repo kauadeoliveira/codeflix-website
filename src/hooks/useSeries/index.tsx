@@ -7,37 +7,34 @@ import { removeRepeat } from "@/utils";
 export function useSeries(){
     const [topSeries, setTopSeries] = useState<Movie[]>();
     const [popularSeries, setPopularSeries] = useState<Movie[]>();
-    const [latestSeries, setLatestSeries] = useState<Movie[]>();
 
     const [allSeries, setAllSeries] = useState<Movie[]>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
 
-    const topSeriesQuery = useQuery('top_movies', () => getCategory('tv', 'top_rated'));
-    const popularSeriesQuery = useQuery('popular_movies', () => getCategory('tv', 'popular'));
-    const latestSeriesQuery = useQuery('latest_movies', () => getCategory('tv', 'now_playing'));
+    const topSeriesQuery = useQuery('top_series', () => getCategory('tv', 'top_rated'));
+    const popularSeriesQuery = useQuery('popular_series', () => getCategory('tv', 'popular'));
     
     useEffect(() => {
-        if(!topSeriesQuery.isLoading && !popularSeriesQuery.isLoading && !latestSeriesQuery.isLoading){
+        if(!topSeriesQuery.isLoading && !popularSeriesQuery.isLoading){
             setIsLoading(false)
         }
-    }, [topSeriesQuery.isLoading, popularSeriesQuery.isLoading, latestSeriesQuery.isLoading])
+    }, [topSeriesQuery.isLoading, popularSeriesQuery.isLoading])
 
     useEffect(() => {
         setTopSeries(topSeriesQuery.data?.results);
         setPopularSeries(popularSeriesQuery.data?.results);
-        setLatestSeries(latestSeriesQuery.data?.results);
-    }, [topSeriesQuery.isLoading, popularSeriesQuery.isLoading, latestSeriesQuery.isLoading])
+    }, [topSeriesQuery.isLoading, popularSeriesQuery.isLoading])
 
     useEffect(() => {
-        if(topSeriesQuery.isError && popularSeriesQuery.isError && latestSeriesQuery.isError){
+        if(topSeriesQuery.isError && popularSeriesQuery.isError){
             setIsError(true)
         }
-    }, [topSeriesQuery.isError, popularSeriesQuery.isError, latestSeriesQuery.isError])
+    }, [topSeriesQuery.isError, popularSeriesQuery.isError])
     
     useEffect(() => {
-        if(topSeries && popularSeries && latestSeries){
-            const concatSeries = topSeries.concat(popularSeries, latestSeries);
+        if(topSeries && popularSeries){
+            const concatSeries = topSeries.concat(popularSeries);
             const noRepeatSeries = removeRepeat(concatSeries);
             setAllSeries(noRepeatSeries);
         }
@@ -59,10 +56,5 @@ export function useSeries(){
             isError: popularSeriesQuery.isError,
             data: popularSeries
         },
-        latestSeries: {
-            isLoading: latestSeriesQuery.isLoading,
-            isError: latestSeriesQuery.isError,
-            data: latestSeries
-        }
     }
 }

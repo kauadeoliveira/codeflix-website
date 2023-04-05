@@ -1,31 +1,20 @@
 "use client"
 
-import { useEffect, useState } from 'react'
 import { LoadingScreen, Poster } from '@/components'
-import { useMovies } from '@/hooks' // Hook que retorna dados de filmes recebidos da Api The Movie DB 
+import { useLoading, useMovies, useSeries } from '@/hooks'
 import { renderSlider } from '@/utils' // Função utilitaria que renderia um Slider de acordo com as informações passadas.
 
 
 // Homepage
 export default function Home() {
-  // Estado que define se LoadingScreen vai ser renderizada ou não
-  const [renderLoadingScreen, setRenderLoadingScreen] = useState<boolean>(true);
+  const { allMovies, popularMovies, latestMovies, topMovies } = useMovies(); // Acessar dados de filmes
+  const { allSeries, popularSeries, topSeries } = useSeries();  // Acessar dados de filmes
 
-  // Acessar dados de filmes
-  const { allMovies, popularMovies, latestMovies, topMovies } = useMovies();
-
-  // Adiciona um tempo de 3s para LoadingScreen continuar sendo renderizada depois que os dados dos filmes já foram recebidos.
-  useEffect(() => {
-    if(!allMovies.isLoading){
-      const timeoutId = setTimeout(() => setRenderLoadingScreen(false), 3000)
-
-      return () => clearTimeout(timeoutId)
-    } 
-  }, [allMovies.isLoading])
+  const { loading } = useLoading([allSeries, allMovies], 3000); // Verifica se allSeries e allMovies já sairam do estado de Loading.
 
   return (
     <>
-    {renderLoadingScreen ? <LoadingScreen /> : (
+    {loading ? <LoadingScreen /> : (
       <main className="w-screen flex flex-col gap-3 mb-32">
         {latestMovies.data && (
           <Poster 
@@ -43,7 +32,11 @@ export default function Home() {
 
         {topMovies.data && renderSlider('Filmes Com as Melhores Avaliações', topMovies.data, topMovies.isLoading)}
 
+        {topSeries.data && renderSlider('Series Com as Melhores Avaliações', topSeries.data, topSeries.isLoading)}
+
         {popularMovies.data && renderSlider('Filmes Tendência', popularMovies.data, popularMovies.isLoading)}
+
+        {popularSeries.data && renderSlider('Series Tendência', popularSeries.data, popularSeries.isLoading)}
      </main>
     )}
     </>
