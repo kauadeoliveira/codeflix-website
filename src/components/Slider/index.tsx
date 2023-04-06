@@ -22,32 +22,26 @@ export const Slider = ({ children, title }: SliderProps) => {
         mobile_sm: {
             breakpoint: { max: 425, min: 0 },
             items: 3,
-            partialVisibilityGutter: 30
         },
         mobile_lg: {
             breakpoint: { max: 550, min: 426 },
             items: 3.5,
-            partialVisibilityGutter: 30
         },
         tablet_sm: {
             breakpoint: { max: 650, min: 551 },
             items: 4.5,
-            partialVisibilityGutter: 30
         },
         tablet_lg: {
             breakpoint: { max: 950, min: 651 },
             items: 5.5,
-            partialVisibilityGutter: 30
         },
         desktop_sm: {
             breakpoint: { max: 1200, min: 950 },
             items: 8.5,
-            partialVisibilityGutter: 30
         },
         desktop_lg: {
             breakpoint: { max: 3000, min: 1201 },
             items: 9.5,
-            partialVisibilityGutter: 30
         }
       }
 
@@ -57,7 +51,6 @@ export const Slider = ({ children, title }: SliderProps) => {
             <Carousel
              responsive={responsive}
              infinite
-             slidesToSlide={width && width > 950 ? 7 : width && width > 550 ? 3 : 2}
              ssr
              swipeable
             >

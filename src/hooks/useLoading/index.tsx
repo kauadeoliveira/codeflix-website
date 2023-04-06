@@ -1,5 +1,6 @@
+"use client"
+
 import { useEffect, useState } from "react";
-import { UseQueryResult } from "react-query";
 
 export function useLoading(requests: any[], delay: number = 0){
     const [loading, setLoading] = useState<boolean>(true);

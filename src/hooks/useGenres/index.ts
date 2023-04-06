@@ -1,3 +1,5 @@
+"use client"
+
 import type { Type } from "@/types/api";
 import type { Genre } from "@/types/utils";
 import { apiKey } from "@/constants";
@@ -9,6 +11,8 @@ import { useQuery } from "react-query"; // Importei o hook `useQuery` para fazer
     React Query é uma biblioteca de gerenciamento de estado em cache para React que ajuda a lidar com dados assíncronos. Ele fornece uma maneira fácil de buscar, armazenar em cache e atualizar dados, e também oferece recursos como refetching automático, cancelamento de solicitação e gerenciamento de cache inteligente.
 */
 
+
+// Hook que nos da acesso a todos os generos de filmes e series do The Movie DB
 async function getGenres(type: Type){
     const response = await axios.get(`https://api.themoviedb.org/3/genre/${type}/list?api_key=${apiKey}&language=pt-BR`);
     return response.data;
