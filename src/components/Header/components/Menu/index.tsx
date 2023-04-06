@@ -20,7 +20,7 @@ export const Menu = () => {
     const handleCloseMenu = () => setOpenMenu && setOpenMenu(false);
 
     // Acessa os generos dos filmes e series através desse hook
-    const { data: genres } = useGenres()
+    const { allGenres } = useGenres()
 
     return(
         <div 
@@ -38,7 +38,7 @@ export const Menu = () => {
                 <MenuItem href="/minha-lista">Minha Lista</MenuItem>
                 <Accordion title="Categorias">
                     <ul className="flex flex-wrap">
-                        {genres.allGenres.map(genre => (
+                        {allGenres.data.map(genre => (
                             <li key={genre.id} className="block w-1/2">
                                 <a href="#" className="hover:underline">{genre.name}</a>
                             </li>

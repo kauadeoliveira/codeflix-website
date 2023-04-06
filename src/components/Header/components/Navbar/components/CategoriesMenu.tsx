@@ -19,7 +19,7 @@ export const CategoriesMenu = () => {
     const handleCloseCategoriesMenu = () => setOpenCategoriesMenu(false);
 
     // Acessa os generos dos filmes e series através desse hook
-    const { data: genres } = useGenres();
+    const { allGenres } = useGenres();
     
     // Adiciona mousedown event diretamente em `document` quando o estado openCategoriesMenu for true
     useEffect(() => {
@@ -44,7 +44,7 @@ export const CategoriesMenu = () => {
              ${openCategoriesMenu ? 'block' : 'hidden'}`}
               onMouseDown={handleCloseCategoriesMenu}
             >
-                {genres.allGenres.map((genre: Genre) => (
+                {allGenres.data.map((genre: Genre) => (
                     <li key={genre.id} className="p-1 hover:bg-secondary-color cursor-pointer">
                         <a href="#">{genre.name}</a>
                     </li>
