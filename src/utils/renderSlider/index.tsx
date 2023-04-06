@@ -12,12 +12,13 @@ export function renderSlider(title: Capitalize<string>, videoArray: Movie[], isL
       return(
         <Slider title={title}>
           {videosWithPoster.map(video => (
-            <VideoCard
-             img={video.poster_path}
-             route="#"
-             title={video.title}
-             key={video.id}
-            />
+            <div className="mx-2" key={video.id}>
+              <VideoCard
+               img={video.poster_path}
+               route="#"
+               title={video.title}
+              />
+            </div>
           ))}
         </Slider>
       )
