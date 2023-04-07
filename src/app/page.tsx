@@ -1,8 +1,8 @@
 "use client"
 
-import { LoadingScreen, Poster } from '@/components'
+import { LoadingCards, LoadingScreen, Poster, Slider, VideoCard } from '@/components'
 import { useLoading, useMovies, useSeries } from '@/hooks'
-import { renderSlider } from '@/utils' // Função utilitaria que renderia um Slider de acordo com as informações passadas.
+import { renderMovieSlider, renderSerieSlider } from '@/utils' // Função utilitaria que renderia um Slider de acordo com as informações passadas.
 
 
 // Homepage
@@ -28,15 +28,17 @@ export default function Home() {
           />
         )}
 
-        {latestMovies.data && renderSlider('Filmes Lançados Recentemente', latestMovies.data, latestMovies.isLoading)}
+        { latestMovies.data && renderMovieSlider('Filmes Lançamentos', latestMovies.data, latestMovies.isLoading) }
 
-        {topMovies.data && renderSlider('Filmes Com as Melhores Avaliações', topMovies.data, topMovies.isLoading)}
+        { popularSeries.data && renderSerieSlider('Series em Alta', popularSeries.data, popularSeries.isLoading) }
+        
+        { popularMovies.data && renderMovieSlider('Filmes Em alta', popularMovies.data, popularMovies.isLoading) }
 
-        {topSeries.data && renderSlider('Series Com as Melhores Avaliações', topSeries.data, topSeries.isLoading)}
+        { topSeries.data && renderSerieSlider('Series com as melhores avaliações', topSeries.data, topSeries.isLoading) }
 
-        {popularMovies.data && renderSlider('Filmes Tendência', popularMovies.data, popularMovies.isLoading)}
+        { topMovies.data && renderMovieSlider('Filmes com as melhores avaliações', topMovies.data, topMovies.isLoading) }
 
-        {popularSeries.data && renderSlider('Series Tendência', popularSeries.data, popularSeries.isLoading)}
+
      </main>
     )}
     </>

@@ -55,7 +55,7 @@ export default function Series() {
                 <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Series</h2>
                 <div className={`grid gap-3 ${gridResponsiveClass}`}>
                     {seriesWithPoster?.map(serie => (
-                        <VideoCard img={serie.poster_path} route="#" title={serie.title} key={serie.id}/>
+                        <VideoCard img={serie.poster_path} route="#" title={serie.name} key={serie.id}/>
                     ))}
                 </div>
             </div>
