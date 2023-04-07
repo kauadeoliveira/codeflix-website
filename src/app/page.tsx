@@ -15,16 +15,16 @@ export default function Home() {
   return (
     <>
     {loading ? <LoadingScreen /> : (
-      <main className="w-screen flex flex-col gap-3 mb-32">
+      <main className="flex flex-col gap-3 mb-32">
         {latestMovies.data && (
           <Poster 
-          images={{
-            lg: latestMovies.data[0].backdrop_path,
-            sm: latestMovies.data[0].poster_path
-          }}
-          route="#"
-          title={latestMovies.data[0].title}
-          overview={latestMovies.data[0].overview}
+           images={{
+             lg: latestMovies.data[0].backdrop_path,
+             sm: latestMovies.data[0].poster_path
+           }}
+           route="#"
+           title={latestMovies.data[0].title}
+           overview={latestMovies.data[0].overview}
           />
         )}
 

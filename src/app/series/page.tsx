@@ -1,15 +1,15 @@
 "use client"
 
-import { useLoading, useMovies, useWindowSize } from "@/hooks"
+import { useMovies, useSeries, useWindowSize } from "@/hooks"
 import { Poster, VideoCard } from "@/components";
 import { useState, useEffect } from "react";
 
-export default function Filmes() {
-    const { allMovies } = useMovies();
-    const movieWithPoster = allMovies.data && allMovies.data.filter(movie => movie.poster_path && movie.backdrop_path); 
+export default function Series() {
+    const { allSeries } = useSeries();
+    const seriesWithPoster = allSeries.data && allSeries.data.filter(movie => movie.poster_path && movie.backdrop_path); 
     const { width } = useWindowSize();
     const [gridResponsiveClass, setGridResponsiveClass] = useState<string>("");
-    
+
     useEffect(() => {
         console.log(width)
             if(width && width > 425){
@@ -36,24 +36,26 @@ export default function Filmes() {
 
     }, [width])
 
+    useEffect(() => console.log(seriesWithPoster), [seriesWithPoster])
+
     return(
         <main className="flex flex-col gap-3 mb-32">
-            {movieWithPoster && (
+            {seriesWithPoster && (
             <Poster
              images={{
-                 lg: movieWithPoster[0].backdrop_path,
-                 sm: movieWithPoster[0].poster_path
+                 lg: seriesWithPoster[0].backdrop_path,
+                 sm: seriesWithPoster[0].poster_path
              }}
-             overview={movieWithPoster[0].overview}
+             overview={seriesWithPoster[0].overview}
              route="#"
-             title={movieWithPoster[0].title}
+             title={seriesWithPoster[0].name}
             />
             )}
             <div className="px-4">
-                <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Filmes</h2>
+                <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Series</h2>
                 <div className={`grid gap-3 ${gridResponsiveClass}`}>
-                    {movieWithPoster?.map(movie => (
-                        <VideoCard img={movie.poster_path} route="#" title={movie.title} key={movie.id}/>
+                    {seriesWithPoster?.map(serie => (
+                        <VideoCard img={serie.poster_path} route="#" title={serie.title} key={serie.id}/>
                     ))}
                 </div>
             </div>
