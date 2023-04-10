@@ -3,6 +3,7 @@
 import { useMovies, useSeries, useWindowSize } from "@/hooks"
 import { Poster, VideoCard } from "@/components";
 import { useState, useEffect } from "react";
+import Head from "next/head";
 
 export default function Series() {
     const { allSeries } = useSeries();
@@ -39,26 +40,32 @@ export default function Series() {
     useEffect(() => console.log(seriesWithPoster), [seriesWithPoster])
 
     return(
-        <main className="flex flex-col gap-3 mb-32">
-            {seriesWithPoster && (
-            <Poster
-             images={{
-                 lg: seriesWithPoster[0].backdrop_path,
-                 sm: seriesWithPoster[0].poster_path
-             }}
-             overview={seriesWithPoster[0].overview}
-             route="#"
-             title={seriesWithPoster[0].name}
-            />
-            )}
-            <div className="px-4">
-                <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Series</h2>
-                <div className={`grid gap-3 ${gridResponsiveClass}`}>
-                    {seriesWithPoster?.map(serie => (
-                        <VideoCard img={serie.poster_path} route="#" title={serie.name} key={serie.id}/>
-                    ))}
+        <div>
+            <Head>
+            <title>Series</title>
+            <meta property="og:title" content="Series" key="series-title" />
+            </Head>
+            <main className="flex flex-col gap-3 mb-32">
+                {seriesWithPoster && (
+                <Poster
+                 images={{
+                     lg: seriesWithPoster[0].backdrop_path,
+                     sm: seriesWithPoster[0].poster_path
+                 }}
+                 overview={seriesWithPoster[0].overview}
+                 route="#"
+                 title={seriesWithPoster[0].name}
+                />
+                )}
+                <div className="px-4">
+                    <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Series</h2>
+                    <div className={`grid gap-3 ${gridResponsiveClass}`}>
+                        {seriesWithPoster?.map(serie => (
+                            <VideoCard img={serie.poster_path} route="#" title={serie.name} key={serie.id}/>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     )
 }

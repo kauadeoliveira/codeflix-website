@@ -15,7 +15,7 @@ export const Header = () => {
     - setOpenMenu define se o Menu vai estar aberto ou fechado.
     - setOpenSearch define se o Search vai estar aberto ou fechado.
 */
-    const { setOpenMenu, setOpenSearch } = useContext(MyContext);
+    const { setOpenMenu, setOpenSearch, openSearch } = useContext(MyContext);
 
     const handleOpenMenu = () => setOpenMenu && setOpenMenu(true);
 
@@ -23,7 +23,7 @@ export const Header = () => {
 
     return(
     <>
-        <header className='w-full h-[52px] flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2'>
+        <header className='w-full flex justify-between text-2xl py-1 px-4 md:px-6 md:py-2 z-10'>
             <button onClick={handleOpenMenu} className='block md:hidden'>
                 <HiMenu />
             </button>
@@ -33,7 +33,6 @@ export const Header = () => {
                 <HiSearch />
             </button>
         </header>
-
         {/* Menu que vai conter toda informação do nosso Header (Tablet, Desktop) */}
         <Menu />
 
