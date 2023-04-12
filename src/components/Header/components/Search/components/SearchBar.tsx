@@ -3,7 +3,9 @@ import { HiSearch } from "react-icons/hi";
 
 export const SearchBar = () => {
     return(
-        <div className="flex bg-bg-disabled rounded-md py-2 px-2 items-center text-2xl gap-2">
+        <div 
+         className="flex bg-secondary-color rounded-md py-2 px-2 items-center text-lg gap-2 transition-colors duration-100 hover:bg-bg-disabled"
+        >
             <button>
                 <HiSearch />
             </button>

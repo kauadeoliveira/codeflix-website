@@ -1,10 +1,11 @@
 "use client"
 
 import { MyContext } from "@/context/MyContext"
-import { useWindowSize } from "@/hooks"
+import { useMovies, useWindowSize } from "@/hooks"
 import { useContext } from "react"
 import { HiX } from "react-icons/hi"
 import { SearchBar } from "./components/SearchBar"
+import { SearchItem } from "./components/SearchItem"
 
 
 /* 
@@ -16,6 +17,7 @@ export const Search = () => {
     // Estado que indica se o menu está aberto ou fechado. Altero ele através de um botão que fica lá em <Header /> por isso usei context.
     const { openSearch, setOpenSearch } = useContext(MyContext);
     const { width } = useWindowSize();
+    const { allMovies } = useMovies();
 
     const handleCloseSearch = () => setOpenSearch && setOpenSearch(false);
 
@@ -40,6 +42,24 @@ export const Search = () => {
                     </button>
                 </div>
                 <SearchBar />
+                <div className="w-full mt-3">
+                    <span className="text-xl">Resultados</span>
+                    <div className="flex flex-col gap-2">
+                        {allMovies.data && 
+                        <SearchItem href="#"
+                         img={allMovies.data[0].poster_path}
+                         overview={allMovies.data[0].overview}
+                         title={allMovies.data[0].title}
+                         />}
+
+                        {allMovies.data && 
+                        <SearchItem href="#"
+                         img={allMovies.data[9].poster_path}
+                         overview={allMovies.data[9].overview}
+                         title={allMovies.data[9].title}
+                         />}
+                    </div>
+                </div>
             </div>
         )}
         </>
