@@ -24,7 +24,7 @@ export const SearchItem = ({ img, title, overview, href }: SearchItem) => {
                     {title}
                 </span>
                 <p className="text-xs font-poppins">
-                    {overview.length > 120 ? overview.slice(0, 120) : overview}...
+                    {overview.length > 120 ? `${overview.slice(0, 121)}...` : overview}
                 </p>
             </div>
         </a>
