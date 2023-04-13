@@ -1,12 +1,13 @@
 "use client";
 
 import { HiMenu, HiSearch } from "react-icons/hi";
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { MyContext } from "@/context/MyContext";
 import { Logo } from "../../components"
 import { Menu } from "./components/Menu";
 import { Search } from "./components/Search";
 import { Navbar } from "./components/Navbar";
+import { useWindowSize } from "@/hooks";
 
 /* Header do site */
 export const Header = () => {
@@ -15,11 +16,20 @@ export const Header = () => {
     - setOpenMenu define se o Menu vai estar aberto ou fechado.
     - setOpenSearch define se o Search vai estar aberto ou fechado.
 */
-    const { setOpenMenu, setOpenSearch, openSearch } = useContext(MyContext);
+    const { setOpenMenu, setOpenSearch, openSearch, openMenu } = useContext(MyContext);
 
     const handleOpenMenu = () => setOpenMenu && setOpenMenu(true);
 
     const handleOpenSearch = () => setOpenSearch && setOpenSearch(true);
+
+
+    useEffect(() => {
+        if(openMenu || openSearch){
+            document.body.style.overflow = "hidden"
+        }else{
+            document.body.style.overflow = "auto"
+        }
+    }, [openMenu, openSearch])
 
     return(
     <>

@@ -23,18 +23,16 @@ export const Search = () => {
 
     const handleSearchValue = (event: ChangeEvent<HTMLInputElement>) => setSearchValue(event.target.value.toLowerCase().trim())
 
-    const getSearchResults = (searchQuery: string) => {
-        if(searchQuery.length > 0){
-            const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title.toLowerCase().includes(searchQuery)) ?? []
-            const serieResults: Serie[] = allSeries.data?.filter(serie => serie.name.toLowerCase().includes(searchQuery)) ?? []
+    useEffect(() =>  {
+        if(searchValue.length > 0){
+            const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title.toLowerCase().includes(searchValue)) ?? []
+            const serieResults: Serie[] = allSeries.data?.filter(serie => serie.name.toLowerCase().includes(searchValue)) ?? []
             
-            return [...movieResults, ...serieResults]
+            setResults([...movieResults, ...serieResults])
         }else{
-            return []
+            setResults([])
         }
-    }
-
-    useEffect(() =>  setResults(getSearchResults(searchValue)), [searchValue])
+    }, [searchValue])
 
     // Reset
     useEffect(() => {

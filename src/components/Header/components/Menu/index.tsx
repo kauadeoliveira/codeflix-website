@@ -7,6 +7,7 @@ import { Accordion } from '@/components';
 import { MenuItem } from './components/MenuItem';
 import { useGenres } from '@/hooks/useGenres';
 import { usePathname } from "next/navigation"
+import { useWindowSize } from '@/hooks';
 
 /* 
     Menu que vai conter toda informação do nosso Header. Através dele vamos conseguir acessar diferentes rotas do site.
@@ -15,6 +16,8 @@ import { usePathname } from "next/navigation"
     OBS: Usado apenas no modo Mobile da janela. 
 */
 export const Menu = () => {
+    const { width } = useWindowSize()
+
     // Estado que indica se o menu está aberto ou fechado.
     const { openMenu, setOpenMenu } = useContext(MyContext);
 
@@ -26,6 +29,12 @@ export const Menu = () => {
     const pathname = usePathname()
 
     useEffect(() => handleCloseMenu(), [pathname])
+
+    useEffect(() => {
+        if(width && width > 768 && openMenu && setOpenMenu){
+            setOpenMenu(false);
+        }
+    }, [width])
 
     return(
         <div 
