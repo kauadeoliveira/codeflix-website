@@ -1,33 +1,27 @@
 "use client"
 
 import { MyContext } from "@/context/MyContext"
-import { useMovies, useSeries, useWindowSize } from "@/hooks"
-import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { useMovies, useSeries } from "@/hooks"
+import React, { ChangeEvent, useContext, useEffect, useRef, useState } from "react"
 import { HiX } from "react-icons/hi"
 import { SearchBar } from "./components/SearchBar"
 import { SearchItem } from "./components/SearchItem"
 import { Movie, Serie } from "@/types/utils"
+import { usePathname } from "next/navigation"
 
 
-/* 
-    Menu onde vai conter toda a parte de pesquisa de filmes ou series do site.
-
-    OBS: utilizado só no tamanho mobile da janela.
-*/
 export const Search = () => {
-    // Estado que indica se o menu está aberto ou fechado. Altero ele através de um botão que fica lá em <Header /> por isso usei context.
-    const { width } = useWindowSize();
     const { allMovies } = useMovies();
     const { allSeries } = useSeries();
-    const allVideos: (Movie | Serie)[] | undefined = allMovies.data && allSeries.data && [...allMovies.data, ...allSeries.data]
-
     const { openSearch, setOpenSearch } = useContext(MyContext);
+
+    const searchInputRef = useRef<HTMLInputElement>(null)
     const [searchValue, setSearchValue] = useState<string>('');
     const [results, setResults] = useState<(Movie | Serie)[] | undefined>(undefined);
 
     const handleCloseSearch = () => setOpenSearch && setOpenSearch(false);
 
-    // const handleSearchValue = (event: ChangeEvent<HTMLInputElement>) => setSearchValue(event.target.value.trim())
+    const handleSearchValue = (event: ChangeEvent<HTMLInputElement>) => setSearchValue(event.target.value.toLowerCase().trim())
 
     const getSearchResults = (searchQuery: string) => {
         if(searchQuery.length > 0){
@@ -38,53 +32,48 @@ export const Search = () => {
         }else{
             return []
         }
-
     }
 
+    useEffect(() =>  setResults(getSearchResults(searchValue)), [searchValue])
+
+    // Reset
     useEffect(() => {
-        console.log(searchValue.length > 0)
-        setResults(getSearchResults(searchValue))
-    }, [searchValue])
+        if(searchInputRef.current){
+            searchInputRef.current.value = ''
+        }
+        setResults([])
+        setSearchValue('')
+    }, [openSearch])
 
+    
+    const pathname = usePathname()
+    useEffect(() => handleCloseSearch(), [pathname])
+    
     return(
-        <>
-        {width && width > 768 ? (
-            <div className={`hidden h-screen w-full ${openSearch ? "transform-none" : "translate-y-[-100vh]"}
-            duration-500 transition-transform md:block backdrop-blur-sm fixed top-0 left-0 z-[3000]`}>
-                <div className="bg-main-color">
-                    <button onClick={handleCloseSearch} className='opacity-80 hover:opacity-100 text-2xl'>
-                        <HiX />
-                    </button>
-                </div>
-            </div>   
-        ) : (
-
-            <div className={`block h-screen w-full ${openSearch ? "transform-none" : "translate-y-[-100vh]"}
-            duration-500 transition-transform bg-main-color p-3 md:hidden fixed top-0 left-0 z-[3000] overflow-auto`}>
-                <div className='flex justify-end mb-4'>
-                    <button onClick={handleCloseSearch} className='opacity-80 hover:opacity-100 text-2xl'>
-                        <HiX />
-                    </button>
-                </div>
-                <SearchBar onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchValue(event.target.value.trim())}/>
-                    <div className="w-full mt-3">
-                    <span className={`text-xl ${searchValue ? 'inline-block' : 'hidden'}`}>
-                        {results && results.length > 0 ? 'Resultados' : 'Não encontrei'}
-                    </span>
-                        <div className="flex flex-col gap-2">
-                            {results && results.map(result => (
-                                <SearchItem 
-                                key={result.id}
-                                href="#"
-                                img={result.poster_path}
-                                overview={result.overview}
-                                title={result.title ? result.title : result.name}
-                                />
-                            ))}
-                        </div>
-                    </div>
+        <div className={`block bg-main-color h-screen w-full p-3 ${openSearch ? "transform-none" : "translate-y-[-100vh]"}
+        duration-500 transition-transform fixed top-0 left-0 z-[3000] overflow-auto`}>
+            <div className='flex justify-end mb-2'>
+                <button onClick={handleCloseSearch} className='opacity-80 hover:opacity-100 text-2xl'>
+                    <HiX />
+                </button>
             </div>
-        )}
-        </>
+            <SearchBar onChange={handleSearchValue} ref={searchInputRef} />
+            <div className="w-full mt-3">
+                <span className={`text-xl ${searchValue ? 'inline-block' : 'hidden'}`}>
+                    {results && results.length > 0 ? 'Resultados' : 'Que pena...Não temos essa opção.'}
+                </span>
+                <div className="flex flex-col gap-2">
+                    {results && results.map(result => (
+                        <SearchItem 
+                         key={result.id}
+                         href="#"
+                         img={result.poster_path}
+                         overview={result.overview}
+                         title={result.title ? result.title : result.name}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
     )
 }

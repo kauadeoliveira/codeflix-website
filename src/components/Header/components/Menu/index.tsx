@@ -1,11 +1,12 @@
 "use client";
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { HiX } from "react-icons/hi"
 import { MyContext } from '@/context/MyContext';
 import { Accordion } from '@/components';
 import { MenuItem } from './components/MenuItem';
 import { useGenres } from '@/hooks/useGenres';
+import { usePathname } from "next/navigation"
 
 /* 
     Menu que vai conter toda informação do nosso Header. Através dele vamos conseguir acessar diferentes rotas do site.
@@ -22,6 +23,10 @@ export const Menu = () => {
     // Acessa os generos dos filmes e series através desse hook
     const { allGenres } = useGenres()
 
+    const pathname = usePathname()
+
+    useEffect(() => handleCloseMenu(), [pathname])
+
     return(
         <div 
          className={`block h-screen w-full ${openMenu ? "transform-none" : "translate-y-[-100vh]"}
@@ -33,6 +38,7 @@ export const Menu = () => {
                 </button>
             </div>
             <nav className='text-xl flex flex-col gap-3 px-3'>
+                <MenuItem href="/">Inicio</MenuItem>
                 <MenuItem href="/filmes">Filmes</MenuItem>
                 <MenuItem href="/series">Series</MenuItem>
                 <MenuItem href="/minha-lista">Minha Lista</MenuItem>
