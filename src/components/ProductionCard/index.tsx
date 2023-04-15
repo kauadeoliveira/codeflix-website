@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { VideoCardType } from "./types";
 
 import { motion } from "framer-motion"
+import { ProductionCardProps } from "./types";
 /* 
     - framer-motion é uma biblioteca de animações.
     - motion é um componente otimizado para animações de 60fps.
@@ -11,13 +11,13 @@ import { motion } from "framer-motion"
 
 
 /* 
-    O componente VideoCard é um componente usado para exibir cada filme/serie do Site.
+    O componente ProductionCard é um componente usado para exibir cada filme/serie do Site.
 
     @params {string} title - Titulo do filme, será usado para identificar a `alt` da imagem.
     @params {string} img - Imagem da capa do filme.
-    @params {string} route - rota direcionará o usuario ao clicar no VideoCard. 
+    @params {string} route - rota direcionará o usuario ao clicar no ProductionCard. 
 */
-export const VideoCard = ({ title, img, route }: VideoCardType) => {
+export const ProductionCard = ({ title, img, route }: ProductionCardProps) => {
     return(
         <motion.a href={route} className="block min-w-[120px] min-h-[180px] bg-secondary-color rounded-lg">
             <Image

@@ -1,7 +1,7 @@
 "use client"
 
-import { useLoading, useMovies, useWindowSize } from "@/hooks"
-import { Poster, VideoCard } from "@/components";
+import { useMovies, useWindowSize } from "@/hooks"
+import { Poster, ProductionCard } from "@/components";
 import { useState, useEffect } from "react";
 
 export default function Filmes() {
@@ -46,14 +46,14 @@ export default function Filmes() {
              }}
              overview={movieWithPoster[0].overview}
              route="#"
-             title={movieWithPoster[0].title}
+             title={movieWithPoster[0].title ?? ''}
             />
             )}
             <div className="px-4">
                 <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Filmes</h2>
                 <div className={`grid gap-3 ${gridResponsiveClass}`}>
                     {movieWithPoster?.map(movie => (
-                        <VideoCard img={movie.poster_path} route="#" title={movie.title} key={movie.id}/>
+                        <ProductionCard img={movie.poster_path} route="#" title={movie.title ?? ''} key={movie.id}/>
                     ))}
                 </div>
             </div>

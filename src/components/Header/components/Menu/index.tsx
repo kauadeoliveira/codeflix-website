@@ -28,8 +28,10 @@ export const Menu = () => {
 
     const pathname = usePathname()
 
+    // Sempre que o pathname alterar quero fechar o menu.
     useEffect(() => handleCloseMenu(), [pathname])
 
+    // Quando a largura for superior a 768 o menu será fechado se estiver aberto
     useEffect(() => {
         if(width && width > 768 && openMenu && setOpenMenu){
             setOpenMenu(false);

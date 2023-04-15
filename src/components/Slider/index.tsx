@@ -2,6 +2,7 @@ import { useWindowSize } from '@/hooks';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { SliderProps } from './types';
+import { ProductionCard } from '../ProductionCard';
 
 /* 
     O componente Slider é usado para exibir uma lista de itens em um carrossel horizontal.
@@ -10,7 +11,7 @@ import { SliderProps } from './types';
     @params {children} children - Itens que serão exibidos no carrosel.
     @params {string} title - Titulo que será exibido na parte superior do carrosel. 
 */
-export const Slider = ({ children, title }: SliderProps) => {
+export const Slider = ({ productions, title }: SliderProps) => {
     // width é uma propriedade do meu hook `useWindowSize` que retorna o valor da largura atual da janela
     const { width } = useWindowSize();
 
@@ -51,6 +52,7 @@ export const Slider = ({ children, title }: SliderProps) => {
         }
       }
 
+
     return(
         <div className="p-4">
             <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">{title}</h2>
@@ -60,7 +62,15 @@ export const Slider = ({ children, title }: SliderProps) => {
              ssr
              swipeable
             >
-                {children}
+          {productions.map(prod => (
+            <div className="mx-2" key={prod.id}>
+              <ProductionCard
+               img={prod.poster_path}
+               route="#"
+               title={prod.title ? prod.title : prod.name ?? ''}
+              />
+            </div>
+          ))}
             </Carousel>
         </div>
     )

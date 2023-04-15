@@ -1,6 +1,9 @@
+import { Movie, Serie } from "@/types/utils";
 import { ChildrenType } from "@/types/utils/children";
+import { ProductionType } from "@/types/utils/production";
 
 export type SliderProps = {
-    children: ChildrenType;
+    // children: ChildrenType;
+    productions: ProductionType[]
     title?: Capitalize<string>;
 }

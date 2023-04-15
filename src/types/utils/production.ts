@@ -1,4 +1,4 @@
-export type Movie = {
+export type ProductionType = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -9,7 +9,8 @@ export type Movie = {
     popularity: number;
     poster_path: string;
     release_date: string;
-    title: string;
+    title?: string;
+    name?: string;
     video: boolean;
     vote_average: number;
     vote_count: number;

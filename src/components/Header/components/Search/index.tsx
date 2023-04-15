@@ -8,6 +8,7 @@ import { SearchBar } from "./components/SearchBar"
 import { SearchItem } from "./components/SearchItem"
 import { Movie, Serie } from "@/types/utils"
 import { usePathname } from "next/navigation"
+import { Production } from "@/types/utils/production"
 
 
 export const Search = () => {
@@ -17,12 +18,14 @@ export const Search = () => {
 
     const searchInputRef = useRef<HTMLInputElement>(null)
     const [searchValue, setSearchValue] = useState<string>('');
-    const [results, setResults] = useState<(Movie | Serie)[] | undefined>(undefined);
+    const [results, setResults] = useState<Production[] | undefined>(undefined);
 
     const handleCloseSearch = () => setOpenSearch && setOpenSearch(false);
 
+    // Pega os valores digitados no Search Bar e transforma todas as letras em minuscula, remove os espaços e seta em SearchValue.
     const handleSearchValue = (event: ChangeEvent<HTMLInputElement>) => setSearchValue(event.target.value.toLowerCase().trim())
 
+    // Verifica se o que foi salvo em searchValue tem no titulo de algum filme ou serie, se tiver será adicionado em um array de resultados
     useEffect(() =>  {
         if(searchValue.length > 0){
             const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title.toLowerCase().includes(searchValue)) ?? []
@@ -34,7 +37,8 @@ export const Search = () => {
         }
     }, [searchValue])
 
-    // Reset
+
+    // Reseta tudo quando o menu de pesquisa é fechado
     useEffect(() => {
         if(searchInputRef.current){
             searchInputRef.current.value = ''
@@ -44,6 +48,7 @@ export const Search = () => {
     }, [openSearch])
 
     
+    // Fecha o menu de pesquisa sempre que o pathname mudar, ou seja, sempre que acessar outra rota do site.
     const pathname = usePathname()
     useEffect(() => handleCloseSearch(), [pathname])
     
@@ -67,7 +72,7 @@ export const Search = () => {
                          href="#"
                          img={result.poster_path}
                          overview={result.overview}
-                         title={result.title ? result.title : result.name}
+                         title={result.title ? result.title : result.name ?? ''}
                         />
                     ))}
                 </div>
