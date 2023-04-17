@@ -11,8 +11,6 @@ export { IconButton } from "./IconButton";
 export { ProductionCard } from "./ProductionCard";
 export { Poster } from "./Poster";
 export { Slider } from "./Slider";
-export { LoadingSlider } from "./LoadingSlider";
+export { LoadingCards } from "./LoadingCards";
 export { Footer } from "./Footer";
 export { LoadingScreen } from "./LoadingScreen"
-export { LoadingCard } from "./LoadingCard"
-export { LoadingTitle } from "./LoadingTitle"
