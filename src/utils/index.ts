@@ -5,5 +5,3 @@
 
 export { queryClient } from "./query-client";
 export { removeRepeat } from "./removeRepeat"
-export { renderMovieSlider } from "./renderMovieSlider"
-export { renderSerieSlider } from "./renderSerieSlider"

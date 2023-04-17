@@ -1,6 +1,6 @@
 "use client"
 
-import { useMovies, useWindowSize } from "@/hooks"
+import { useMovies, useSeries, useWindowSize } from "@/hooks"
 import { Poster, ProductionCard } from "@/components";
 import { useState, useEffect } from "react";
 

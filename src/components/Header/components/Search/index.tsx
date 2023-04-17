@@ -8,7 +8,7 @@ import { SearchBar } from "./components/SearchBar"
 import { SearchItem } from "./components/SearchItem"
 import { Movie, Serie } from "@/types/utils"
 import { usePathname } from "next/navigation"
-import { Production } from "@/types/utils/production"
+import { ProductionType } from "@/types/utils/production"
 
 
 export const Search = () => {
@@ -18,7 +18,7 @@ export const Search = () => {
 
     const searchInputRef = useRef<HTMLInputElement>(null)
     const [searchValue, setSearchValue] = useState<string>('');
-    const [results, setResults] = useState<Production[] | undefined>(undefined);
+    const [results, setResults] = useState<ProductionType[] | undefined>(undefined);
 
     const handleCloseSearch = () => setOpenSearch && setOpenSearch(false);
 
@@ -30,7 +30,6 @@ export const Search = () => {
         if(searchValue.length > 0){
             const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title.toLowerCase().includes(searchValue)) ?? []
             const serieResults: Serie[] = allSeries.data?.filter(serie => serie.name.toLowerCase().includes(searchValue)) ?? []
-            
             setResults([...movieResults, ...serieResults])
         }else{
             setResults([])
@@ -71,7 +70,8 @@ export const Search = () => {
                          key={result.id}
                          href="#"
                          img={result.poster_path}
-                         overview={result.overview}
+                         date={result.release_date}
+                         rating={result.vote_average}
                          title={result.title ? result.title : result.name ?? ''}
                         />
                     ))}
