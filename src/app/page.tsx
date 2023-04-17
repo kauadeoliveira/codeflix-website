@@ -1,6 +1,6 @@
 "use client"
 
-import { LoadingCards, Poster, Slider } from "@/components";
+import { LoadingSlider, Poster, Slider } from "@/components";
 import { useMovies, useSeries } from "@/hooks";
 
 
@@ -22,11 +22,11 @@ export default function Home() {
        title={latestMovies.data[0].title ?? ''}
       />}
 
-      {latestMovies.data ? <Slider title="Filmes Recentes" productions={latestMovies.data}/> : <LoadingCards />}
-      {topSeries.data ? <Slider title="Series Com as Melhores Avaliações" productions={topSeries.data}/> : <LoadingCards />}
-      {topMovies.data ? <Slider title="Filmes Com as Melhores Avaliações" productions={topMovies.data}/> : <LoadingCards />}
-      {popularSeries.data ? <Slider title="Series Em Alta" productions={popularSeries.data}/> : <LoadingCards />}
-      {popularMovies.data ? <Slider title="Filmes Em Alta" productions={popularMovies.data}/> : <LoadingCards />}
+      {latestMovies.data ? <Slider title="Filmes Recentes" productions={latestMovies.data}/> : <LoadingSlider />}
+      {topSeries.data ? <Slider title="Series Com as Melhores Avaliações" productions={topSeries.data}/> : <LoadingSlider />}
+      {topMovies.data ? <Slider title="Filmes Com as Melhores Avaliações" productions={topMovies.data}/> : <LoadingSlider />}
+      {popularSeries.data ? <Slider title="Series Em Alta" productions={popularSeries.data}/> : <LoadingSlider />}
+      {popularMovies.data ? <Slider title="Filmes Em Alta" productions={popularMovies.data}/> : <LoadingSlider />}
     </main>
   )
 }

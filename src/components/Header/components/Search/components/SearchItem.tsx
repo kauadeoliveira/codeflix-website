@@ -25,9 +25,8 @@ export const SearchItem = ({ img, title, date, href, rating }: SearchItem) => {
                 <span className="font-bold text-lg">
                     {title}
                 </span>
-                <span className="text-gray-400">{date && date.split('-')[0]}</span>
                 <span className="flex items-center gap-[2px]">
-                    {rating}
+                    {rating.toFixed(1)}
                     <HiStar className="text-yellow-400"/>
                 </span>
             </div>
