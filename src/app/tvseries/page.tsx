@@ -1,12 +1,12 @@
 "use client"
 
-import { useMovies, useSeries, useWindowSize } from "@/hooks"
 import { Poster, ProductionCard } from "@/components";
-import { useState, useEffect } from "react";
+import { useSeries, useWindowSize } from "@/hooks";
+import { useEffect, useState } from "react";
 
-export default function Filmes() {
-    const { allMovies } = useMovies();
-    const movieWithPoster = allMovies.data && allMovies.data.filter(movie => movie.poster_path && movie.backdrop_path); 
+export default function TvSeries() {
+    const { allSeries } = useSeries();
+    const serieWithPoster = allSeries.data && allSeries.data.filter(movie => movie.poster_path && movie.backdrop_path); 
     const { width } = useWindowSize();
     const [gridResponsiveClass, setGridResponsiveClass] = useState<string>("");
     
@@ -38,22 +38,22 @@ export default function Filmes() {
 
     return(
         <main className="flex flex-col gap-3 mb-32">
-            {movieWithPoster && (
+            {serieWithPoster && (
             <Poster
              images={{
-                 lg: movieWithPoster[0].backdrop_path,
-                 sm: movieWithPoster[0].poster_path
+                 lg: serieWithPoster[0].backdrop_path,
+                 sm: serieWithPoster[0].poster_path
              }}
-             overview={movieWithPoster[0].overview}
+             overview={serieWithPoster[0].overview}
              route="#"
-             title={movieWithPoster[0].title ?? ''}
+             title={serieWithPoster[0].title ?? ''}
             />
             )}
             <div className="px-4">
-                <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Filmes</h2>
+                <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Séries</h2>
                 <div className={`grid gap-3 ${gridResponsiveClass}`}>
-                    {movieWithPoster?.map(movie => (
-                        <ProductionCard img={movie.poster_path} route="#" title={movie.title ?? ''} key={movie.id}/>
+                    {serieWithPoster?.map(serie => (
+                        <ProductionCard img={serie.poster_path} route="#" title={serie.name ?? ''} key={serie.id}/>
                     ))}
                 </div>
             </div>
