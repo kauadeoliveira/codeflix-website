@@ -12,37 +12,47 @@ import { PosterProps } from "./types";
         - sm: recebe uma imagem pequena para ser usada quando o tamanho da janela for inferior a 768px
     @params {string} route - Rota do filme que está no Poster.
 */
-export const Poster = ({ title, overview, images, route }: PosterProps) => (
-    <div className="relative w-full bg-main-color sm:min-h-[700px] md:min-h-[400px] lg:min-h-[450px]">
+export const Poster = ({ title, overview, images, route }: PosterProps) => {
 
-        {/* Backdrop effect */}
-        <div className="hidden md:block bg-main-color opacity-75 w-full h-full absolute top-0 left-0" />
+    const formatOverview = (overview: string) =>  {
+        if(overview.length < 400) {
+            return overview
+        }else{
+            return overview.charAt(400) === ' ' ? overview.slice(0, 400) + '...' : overview.slice(0, 401)
+        }
+    }
+    return(
+        <div className="relative w-full bg-main-color sm:min-h-[700px] md:min-h-[400px] lg:min-h-[450px]">
 
-        {/* Titulo e descrição do filme (Tablet, Desktop)*/}
-        <div className="absolute w-1/2 top-1/3 left-4 font-poppins hidden md:flex flex-col gap-3">
-            <h2 className="font-bold text-3xl lg:text-5xl">
-                {title}
-            </h2>
-            <p className="opacity-90 text-base lg:text-sm">
-                {overview}
-            </p>
-            <div className="flex gap-2">
+            {/* Backdrop effect */}
+            <div className="hidden md:block bg-main-color opacity-75 w-full h-full absolute top-0 left-0" />
+
+            {/* Titulo e descrição do filme (Tablet, Desktop)*/}
+            <div className="absolute w-3/5 top-1/3 left-4 font-poppins hidden md:flex flex-col gap-3">
+                <h2 className="font-bold text-3xl lg:text-5xl">
+                    {title}
+                </h2>
+                <p className="opacity-90 text-xs">
+                    {formatOverview(overview)}
+                </p>
+                <div className="flex gap-2">
+                    <Button mode="light" Icon={HiPlay}>Trailer</Button>
+                    <Button mode="dark" href={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
+                </div>
+            </div>
+
+            {/* A imagem do poster vai ser selecionada de acordo com a largura da janela */}
+            <picture> 
+                <source srcSet={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${images.lg}`} media={"(min-width: 1024px)"}/>
+                <source srcSet={`https://image.tmdb.org/t/p/original${images.lg}`} media={"(min-width: 768px)"}/>
+                <img src={`https://image.tmdb.org/t/p/original/${images.sm}`} alt={`${title} Poster`} />
+            </picture>
+
+            {/* Botoes de `Trailer` e `Saiba Mais` (Mobile) */}
+            <div className="w-full absolute bottom-3 flex md:hidden gap-3 justify-center">
                 <Button mode="light" Icon={HiPlay}>Trailer</Button>
                 <Button mode="dark" href={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
             </div>
         </div>
-
-        {/* A imagem do poster vai ser selecionada de acordo com a largura da janela */}
-        <picture> 
-            <source srcSet={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${images.lg}`} media={"(min-width: 1024px)"}/>
-            <source srcSet={`https://image.tmdb.org/t/p/original${images.lg}`} media={"(min-width: 768px)"}/>
-            <img src={`https://image.tmdb.org/t/p/original/${images.sm}`} alt={`${title} Poster`} />
-        </picture>
-
-        {/* Botoes de `Trailer` e `Saiba Mais` (Mobile) */}
-        <div className="w-full absolute bottom-3 flex md:hidden gap-3 justify-center">
-            <Button mode="light" Icon={HiPlay}>Trailer</Button>
-            <Button mode="dark" href={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
-        </div>
-    </div>
-)
+    )
+}
