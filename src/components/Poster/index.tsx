@@ -49,7 +49,7 @@ export const Poster = ({ title, overview, images, route }: PosterProps) => {
             </picture>
 
             {/* Botoes de `Trailer` e `Saiba Mais` (Mobile) */}
-            <div className="w-full absolute bottom-3 flex md:hidden gap-3 justify-center">
+            <div className="w-full absolute bottom-4 flex md:hidden gap-3 justify-center">
                 <Button mode="light" Icon={HiPlay}>Trailer</Button>
                 <Button mode="dark" href={route} Icon={HiDotsCircleHorizontal}>Saiba Mais</Button>
             </div>
