@@ -7,7 +7,6 @@ import { Logo } from "../../components"
 import { Menu } from "./components/Menu";
 import { Search } from "./components/Search";
 import { Navbar } from "./components/Navbar";
-import { useWindowSize } from "@/hooks";
 
 /* Header do site */
 export const Header = () => {

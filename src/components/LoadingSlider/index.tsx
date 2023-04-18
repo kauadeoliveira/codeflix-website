@@ -5,19 +5,21 @@
     - Usado para momentos em que os dados da api ainda não foram retornados.
 */
 
-import { LoadingCard } from "./components/LoadingCard";
-import { LoadingTitle } from "./components/LoadingTitle";
+import { LoadingCard } from "../LoadingCard";
+import { LoadingTitle } from "../LoadingTitle";
+
+
 
 
 type LoadingSliderProps = {
     numCards: number
     title?: boolean
 }
-export const LoadingCards = ({ numCards, title }: LoadingSliderProps) => {
+export const LoadingSlider = ({ numCards, title }: LoadingSliderProps) => {
     const cards = [];
 
     for(let card = 0; card < numCards; card++){
-        cards.push(<LoadingCard />)
+        cards.push(<LoadingCard key={card}/>)
     }
 
     return(

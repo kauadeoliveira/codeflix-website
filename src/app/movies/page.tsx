@@ -1,7 +1,7 @@
 "use client"
 
 import { useMovies, useSeries, useWindowSize } from "@/hooks"
-import { LoadingCards, Poster, ProductionCard } from "@/components";
+import { LoadingCards, LoadingScreen, Poster, ProductionCard } from "@/components";
 import { useState, useEffect } from "react";
 
 type gridNumColumnsByScreenWidthType = {
@@ -19,7 +19,7 @@ export default function Movies() {
     const { allMovies } = useMovies();
     const movieWithPoster = allMovies.data && allMovies.data.filter(movie => movie.poster_path && movie.backdrop_path); 
     const { width } = useWindowSize();
-    const [gridNumColumns, setGridNumColumns] = useState<number>();
+    const [gridNumColumns, setGridNumColumns] = useState<number | undefined>();
 
     const gridNumColumnsByScreenWidth: gridNumColumnsByScreenWidthType = {
         320: 2,
@@ -32,6 +32,7 @@ export default function Movies() {
     }
     
     useEffect(() => {
+        console.log(gridNumColumns)
         if(width){
             const screenWidth = Object.keys(gridNumColumnsByScreenWidth).reverse().find(key => Number(key) <= width)
             screenWidth && setGridNumColumns(gridNumColumnsByScreenWidth[screenWidth])
@@ -53,14 +54,17 @@ export default function Movies() {
                 title={movieWithPoster[0].title ?? ''}
                 />
             }
-            <div className="px-4">
-                <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Filmes</h2>
-                <div className={`grid gap-3 grid-cols-${gridNumColumns}`}>
-                    {movieWithPoster?.map(movie => (
-                        <ProductionCard img={movie.poster_path} route="#" title={movie.title ?? ''} key={movie.id}/>
-                    ))}
+
+            {gridNumColumns && 
+                <div className="px-4">
+                    <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Filmes</h2>
+                    <div className={`grid gap-3 grid-cols-${gridNumColumns}`}>
+                        {movieWithPoster?.map(movie => (
+                            <ProductionCard img={movie.poster_path} route="#" title={movie.title ?? ''} key={movie.id}/>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            }
         </main>
     )
 }

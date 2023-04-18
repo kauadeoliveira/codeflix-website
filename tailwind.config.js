@@ -17,7 +17,15 @@ module.exports = {
         'secondary-color': '#1e1e1e',
         'text-disabled': 'rgba(255, 255, 255, 0.3)',
         'bg-disabled': 'rgba(255, 255, 255, 0.12)'
-      }
+      },
+      screens: {
+        '2xs': '320px',
+        'xs': '375px',
+        'sm': '425px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1440px'
+      },
     },
   },
   plugins: [],
