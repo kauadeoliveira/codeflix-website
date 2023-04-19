@@ -1,6 +1,6 @@
 import { ChildrenType } from "@/types/utils";
 
-export type NavItemProp = {
+export type NavItemProps = {
     href: string;
     children: ChildrenType
 }
