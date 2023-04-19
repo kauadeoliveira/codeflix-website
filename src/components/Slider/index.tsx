@@ -66,7 +66,7 @@ export const Slider = ({ productions, title }: SliderProps) => {
             <div className="mx-2" key={prod.id}>
               <ProductionCard
                img={prod.poster_path}
-               route="#"
+               route={prod.name ? `/tvserie/${prod.id}` : `/movie/${prod.id}`}
                title={prod.title ? prod.title : prod.name ?? ''}
               />
             </div>
