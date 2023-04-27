@@ -28,8 +28,8 @@ export const Search = () => {
     // Verifica se o que foi salvo em searchValue tem no titulo de algum filme ou serie, se tiver será adicionado em um array de resultados
     useEffect(() =>  {
         if(searchValue.length > 0){
-            const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title.toLowerCase().includes(searchValue)) ?? []
-            const serieResults: Serie[] = allSeries.data?.filter(serie => serie.name.toLowerCase().includes(searchValue)) ?? []
+            const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title && movie.title.toLowerCase().includes(searchValue)) ?? []
+            const serieResults: Serie[] = allSeries.data?.filter(serie => serie.name && serie.name.toLowerCase().includes(searchValue)) ?? []
             setResults([...movieResults, ...serieResults])
         }else{
             setResults([])
