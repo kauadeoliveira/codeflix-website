@@ -1,3 +1,5 @@
+"use client"
+
 import { getDetails } from "@/services/http";
 import { useQuery } from "react-query";
 
