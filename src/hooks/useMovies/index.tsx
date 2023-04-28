@@ -9,10 +9,10 @@ import { ProductionType } from "@/types/utils/production";
 
 // Hook que nos da acesso a todos os filmes da página 1 do The Movie DB
 export function useMovies(){
-    const [topMovies, setTopMovies] = useState<ProductionType[]>();
-    const [popularMovies, setPopularMovies] = useState<ProductionType[]>();
-    const [latestMovies, setLatestMovies] = useState<ProductionType[]>();
-    const [allMovies, setAllMovies] = useState<ProductionType[]>();
+    const [topMovies, setTopMovies] = useState<Movie[]>();
+    const [popularMovies, setPopularMovies] = useState<Movie[]>();
+    const [latestMovies, setLatestMovies] = useState<Movie[]>();
+    const [allMovies, setAllMovies] = useState<Movie[]>();
 
     // Estado que indica se todas as requisições feitas terminaram de carregar
     const [isLoading, setIsLoading] = useState<boolean>(true);

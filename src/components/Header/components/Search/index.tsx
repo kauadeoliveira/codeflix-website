@@ -8,7 +8,6 @@ import { SearchBar } from "./components/SearchBar"
 import { SearchItem } from "./components/SearchItem"
 import { Movie, Serie } from "@/types/utils"
 import { usePathname } from "next/navigation"
-import { ProductionType } from "@/types/utils/production"
 
 
 export const Search = () => {
@@ -18,7 +17,7 @@ export const Search = () => {
 
     const searchInputRef = useRef<HTMLInputElement>(null)
     const [searchValue, setSearchValue] = useState<string>('');
-    const [results, setResults] = useState<ProductionType[] | undefined>(undefined);
+    const [results, setResults] = useState<(Movie | Serie)[]>([]);
 
     const handleCloseSearch = () => setOpenSearch && setOpenSearch(false);
 
@@ -28,8 +27,8 @@ export const Search = () => {
     // Verifica se o que foi salvo em searchValue tem no titulo de algum filme ou serie, se tiver será adicionado em um array de resultados
     useEffect(() =>  {
         if(searchValue.length > 0){
-            const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title && movie.title.toLowerCase().includes(searchValue)) ?? []
-            const serieResults: Serie[] = allSeries.data?.filter(serie => serie.name && serie.name.toLowerCase().includes(searchValue)) ?? []
+            const movieResults: Movie[] = allMovies.data?.filter(movie => movie.title.toLowerCase().includes(searchValue)) ?? []
+            const serieResults: Serie[] = allSeries.data?.filter(serie =>serie.name.toLowerCase().includes(searchValue)) ?? []
             setResults([...movieResults, ...serieResults])
         }else{
             setResults([])
@@ -50,7 +49,7 @@ export const Search = () => {
     // Fecha o menu de pesquisa sempre que o pathname mudar, ou seja, sempre que acessar outra rota do site.
     const pathname = usePathname()
     useEffect(() => handleCloseSearch(), [pathname])
-    
+
     return(
         <div className={`block bg-main-color h-screen w-full p-3 ${openSearch ? "transform-none" : "translate-y-[-100vh]"}
         duration-500 transition-transform fixed top-0 left-0 z-[3000] overflow-auto`}>
@@ -72,7 +71,7 @@ export const Search = () => {
                          img={result.poster_path}
                          date={result.release_date}
                          rating={result.vote_average}
-                         title={result.title ? result.title : result.name ?? ''}
+                         title={'title' in result ? result.title : result.name}
                         />
                     ))}
                 </div>

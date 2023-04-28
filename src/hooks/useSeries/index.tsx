@@ -3,15 +3,15 @@
 import { getCategory } from "@/services/http";
 import { useQuery } from "react-query";
 import { useState, useEffect } from "react"
-import type { Serie } from "@/types/utils";
 import { removeRepeat } from "@/utils";
 import { ProductionType } from "@/types/utils/production";
+import { Serie } from "@/types/utils";
 
 // Hook que nos da acesso a todas as series da página 1 do The Movie DB
 export function useSeries(){
-    const [topSeries, setTopSeries] = useState<ProductionType[]>();
-    const [popularSeries, setPopularSeries] = useState<ProductionType[]>();
-    const [allSeries, setAllSeries] = useState<ProductionType[]>();
+    const [topSeries, setTopSeries] = useState<Serie[]>();
+    const [popularSeries, setPopularSeries] = useState<Serie[]>();
+    const [allSeries, setAllSeries] = useState<Serie[]>();
 
     // Estado que indica se todas as requisições feitas terminaram de carregar
     const [isLoading, setIsLoading] = useState<boolean>(true);
