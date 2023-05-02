@@ -5,3 +5,4 @@
 
 export { queryClient } from "./query-client";
 export { removeRepeat } from "./removeRepeat"
+export { minutesToHours } from "./minutesToHours"
