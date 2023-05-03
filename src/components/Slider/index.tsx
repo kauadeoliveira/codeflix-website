@@ -11,7 +11,7 @@ import { ProductionCard } from '../ProductionCard';
     @params {children} children - Itens que serão exibidos no carrosel.
     @params {string} title - Titulo que será exibido na parte superior do carrosel. 
 */
-export const Slider = ({ productions, title }: SliderProps) => {
+export const Slider = ({ title, children }: SliderProps) => {
     // width é uma propriedade do meu hook `useWindowSize` que retorna o valor da largura atual da janela
     const { width } = useWindowSize();
 
@@ -62,15 +62,7 @@ export const Slider = ({ productions, title }: SliderProps) => {
              ssr
              swipeable
             >
-          {productions.map(prod => (
-            <div className="mx-2" key={prod.id}>
-              <ProductionCard
-               img={prod.poster_path}
-               route={'title' in prod ? `/movie/${prod.id}` : `/tvserie/${prod.id}`}
-               title={'title' in prod ? prod.title : prod.name ?? ''}
-              />
-            </div>
-          ))}
+                {children}
             </Carousel>
         </div>
     )

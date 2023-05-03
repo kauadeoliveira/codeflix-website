@@ -3,7 +3,6 @@ import { ChildrenType } from "@/types/utils/children";
 import { ProductionType } from "@/types/utils/production";
 
 export type SliderProps = {
-    // children: ChildrenType;
-    productions: (Movie | Serie)[]
+    children: ChildrenType;
     title?: Capitalize<string>;
 }
