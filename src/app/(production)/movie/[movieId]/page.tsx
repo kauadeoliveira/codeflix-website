@@ -1,6 +1,6 @@
 "use client"
 import { notFound } from 'next/navigation';
-import { getDetails } from "@/services/http";
+import { getCredits, getDetails } from "@/services/http";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 import Image from 'next/image';
@@ -20,22 +20,21 @@ type GenreType = {
 }
 
 export default function MovieDetails({ params }: MovieDetailsProps){
-    const { movieId } = params
-    const movieDetails = useQuery('movieDetails', () => getDetails("movie", movieId))
-    
-    useEffect(() => {
-        if(movieDetails.isError || !parseInt(movieId)){
-            notFound()
-        }
-    }, [movieDetails.isLoading, movieDetails.isError, movieId])
+    const { movieId } = params;
+    const movieDetails = useQuery('movieDetails', () => getDetails("movie", movieId));
+    const movieCredits = useQuery('movieCredits', () => getCredits('movie', movieId));
 
-    useEffect(() => console.log(movieDetails.data), [movieDetails.data])
+    useEffect(() => console.log(movieDetails.data), [movieDetails.data]);
+    useEffect(() => console.log(movieCredits.data), [movieCredits.data])
     
     return(
         <main>
-            <section className='relative w-full h-[90vh]'>
-                <div className='w-full h-full bg-cover bg-center bg-no-repeat' style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movieDetails.data?.backdrop_path})`}} />
-                <div className='absolute top-0 bg-black/75 w-full h-full'>
+            <section className='relative w-full h-screen'>
+                <div
+                 className='w-full h-full bg-cover bg-center bg-no-repeat'
+                 style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movieDetails.data?.backdrop_path})`}} 
+                />
+                <div className='absolute top-0 bg-black/80 w-full h-full'>
                     <div className='flex items-center flex-col p-5 gap-3'>
                         <img
                         src={`https://image.tmdb.org/t/p/original${movieDetails.data?.poster_path}`}
@@ -64,6 +63,9 @@ export default function MovieDetails({ params }: MovieDetailsProps){
                         </div>
                     </div>
                 </div>
+            </section>
+            <section>
+                <span className='text-lg font-bold'>Elenco</span>
             </section>
         </main>
     )
