@@ -55,7 +55,7 @@ export const Slider = ({ title, children }: SliderProps) => {
 
     return(
         <div className="p-4">
-            <h2 className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">{title}</h2>
+            <span className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">{title}</span>
             <Carousel
              responsive={responsive}
              infinite

@@ -13,7 +13,7 @@ export default function Home() {
 
 
   return (
-    <main className="flex flex-col gap-3 mb-32">
+    <main className="flex flex-col gap-3">
       {latestMovies.data 
         && <Poster
          images={{lg: latestMovies.data[0].backdrop_path, sm: latestMovies.data[0].poster_path}}

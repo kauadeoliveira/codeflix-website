@@ -23,7 +23,7 @@ export const Footer = () => {
     }
 
     return(
-        <footer>
+        <footer className="mt-32">
             <div className="flex w-10/12 border-t border-text-disabled m-auto p-4 justify-between">
                 <div className="flex gap-4 text-text-disabled text-xs">
                     <p>© 2023 Codeflix, Inc.</p>

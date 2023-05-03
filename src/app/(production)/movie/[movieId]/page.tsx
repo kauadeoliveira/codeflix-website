@@ -4,9 +4,11 @@ import { getCredits, getDetails } from "@/services/http";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 import Image from 'next/image';
-import { Button } from '@/components';
+import { Button, LoadingSlider, Slider } from '@/components';
 import { minutesToHours } from '@/utils';
 import { HiPlay } from 'react-icons/hi';
+import { ActorCard } from '@/components/ActorCard';
+import { ActorType } from '@/types/utils';
 
 type MovieDetailsProps = {
     params: {
@@ -38,7 +40,7 @@ export default function MovieDetails({ params }: MovieDetailsProps){
                     <div className='flex items-center flex-col p-5 gap-3'>
                         <img
                         src={`https://image.tmdb.org/t/p/original${movieDetails.data?.poster_path}`}
-                        className='w-[150px] h-[225px] rounded-md shadow-md'
+                        className='w-[150px] h-[225px] rounded-lg shadow-md'
                         />
                         <div className='text-center'>
                             <h1 className='text-3xl font-bold'>
@@ -54,7 +56,7 @@ export default function MovieDetails({ params }: MovieDetailsProps){
                             </div>
                         </div>
                         <div>
-                            <span className='text-lg font-bold'>Sinopse</span>
+                            <span className="text-xl font-bold mb-2 ml-1 capitalize font-poppins">Sinopse</span>
                             <p className='break-all text-sm'>{movieDetails.data?.overview}</p>
                         </div>
                         <div className='flex gap-2 mt-4'>
@@ -65,7 +67,16 @@ export default function MovieDetails({ params }: MovieDetailsProps){
                 </div>
             </section>
             <section>
-                <span className='text-lg font-bold'>Elenco</span>
+                {movieCredits.data
+                    ? <Slider title='Elenco'>
+                        {movieCredits.data.cast.map((actor: ActorType) => (
+                            <div className='mx-2' key={actor.id}>
+                                <ActorCard img={actor.profile_path} name={actor.name} character={actor.character} />
+                            </div>
+                        ))}
+                        </Slider>
+                    : <LoadingSlider numCards={11} title={true}/>
+                }
             </section>
         </main>
     )
