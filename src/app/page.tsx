@@ -38,7 +38,7 @@ export default function Home() {
         ? <Slider title="Series em Alta">
             {popularSeries.data.map(serie => (
               <div className="mx-2" key={serie.id}>
-                <ProductionCard img={serie.poster_path} route={`/serie/${serie.id}`} title={serie.name} />
+                <ProductionCard img={serie.poster_path} route={`/tvserie/${serie.id}`} title={serie.name} />
               </div>
             ))}
           </Slider>
@@ -71,7 +71,7 @@ export default function Home() {
         ? <Slider title="Series com as Melhores Notas">
             {topSeries.data.map(serie => (
               <div className="mx-2" key={serie.id}>
-                <ProductionCard img={serie.poster_path} route={`/serie/${serie.id}`} title={serie.name} />
+                <ProductionCard img={serie.poster_path} route={`/tvserie/${serie.id}`} title={serie.name} />
               </div>
             ))}
           </Slider>
