@@ -27,6 +27,7 @@ export default function TvSerieDetails({ params }: TvSerieDetailsProps) {
     const tvSerieDetails = useQuery('tvSerieDetails', () => getDetails('tv', tvserieId))
     const tvSerieCredits = useQuery('tvSerieCredits', () => getCredits('tv', tvserieId));
     const creators = tvSerieDetails.data?.created_by
+    const runtime = tvSerieDetails.data?.episode_run_time[0]
 
     useEffect(() => console.log(tvSerieDetails.data), [tvSerieDetails.data])
     useEffect(() => console.log(tvSerieCredits.data), [tvSerieCredits.data])
@@ -50,15 +51,13 @@ export default function TvSerieDetails({ params }: TvSerieDetailsProps) {
                         {/* Description */}
                         <div className='mt-1 lg:mt-0'>
                                 <div>
-                                    <h1 className='flex items-center text-3xl max-w-max mx-auto lg:mx-0 lg:text-4xl mb-2'>
-                                        <span className='font-bold max-w-max block'>
-                                            {tvSerieDetails.data?.name}
-                                        </span>
-                                        <span className='text-text-disabled'>
-                                            ({tvSerieDetails.data?.first_air_date.split('-')[0]})
-                                        </span>
+                                    <h1 className='font-bold text-3xl max-w-max mx-auto lg:mx-0 lg:text-4xl mb-2'>
+                                        {tvSerieDetails.data?.name}
                                     </h1>
                                     <div className='flex gap-x-2 max-w-max mx-auto text-xs lg:mx-0 lg:text-sm'>
+                                    <span className={`after:content-["•"] after:ml-2 inline-flex items-center`}>
+                                        {tvSerieDetails.data?.first_air_date.split('-')[0]}
+                                    </span>
                                         <ul className='flex gap-x-1 after:content-["•"] after:ml-1'>
                                             {tvSerieDetails.data?.genres.map((genre: GenreType) => (
                                                 <li
@@ -69,8 +68,11 @@ export default function TvSerieDetails({ params }: TvSerieDetailsProps) {
                                                 </li>
                                             ))}
                                         </ul>
-                                        <span className='after:content-["•"] after:ml-2 inline-flex items-center'>
-                                            {minutesToHours(tvSerieDetails.data?.episode_run_time[0])}
+                                        <span
+                                            className={`after:content-["•"] after:ml-2 inline-flex items-center 
+                                            ${runtime ? 'inline' : 'hidden'}`}
+                                        >
+                                            {minutesToHours(runtime)}
                                             <HiOutlineClock className='ml-1'/>
                                         </span>
                                         <span className='inline-flex items-center'>

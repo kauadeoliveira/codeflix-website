@@ -49,13 +49,13 @@ export default function MovieDetails({ params }: MovieDetailsProps){
                             {/* Description */}
                             <div className='mt-1 lg:mt-0'>
                                 <div>
-                                    <div className='flex items-center text-3xl max-w-max mx-auto lg:mx-0 lg:text-4xl mb-2'>
-                                        <h1 className='font-bold'>{movieDetails.data?.title}</h1>
-                                        <span className='ml-1 text-text-disabled'>
-                                            ({movieDetails.data?.release_date.split('-')[0]})
-                                        </span>
-                                    </div>
+                                <h1 className='font-bold text-3xl max-w-max mx-auto lg:mx-0 lg:text-4xl mb-2'> 
+                                    {movieDetails.data?.title}
+                                </h1>
                                     <div className='flex gap-x-2 max-w-max mx-auto text-xs lg:mx-0 lg:text-sm'>
+                                        <span className='after:content-["•"] after:ml-2 inline-flex items-center'>
+                                            {movieDetails.data?.release_date.split('-')[0]}
+                                        </span>
                                         <ul className='flex gap-x-1 after:content-["•"] after:ml-1'>
                                             {movieDetails.data?.genres.map((genre: GenreType) => (
                                                 <li
