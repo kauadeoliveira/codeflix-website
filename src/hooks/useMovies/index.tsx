@@ -34,9 +34,10 @@ export function useMovies(){
 
     // Define topMovies, popularMovies e latestMovies com os dados recebidos da Api
     useEffect(() => {
-        setTopMovies(topMoviesQuery.data?.results);
-        setPopularMovies(popularMoviesQuery.data?.results);
-        setLatestMovies(latestMoviesQuery.data?.results);
+        // filtrando apenas Filmes com backdrop_path e overview
+        setTopMovies(topMoviesQuery.data?.results.filter((movie: Movie) => movie.backdrop_path && movie.overview));
+        setPopularMovies(popularMoviesQuery.data?.results.filter((movie: Movie) => movie.backdrop_path && movie.overview));
+        setLatestMovies(latestMoviesQuery.data?.results.filter((movie: Movie) => movie.backdrop_path && movie.overview));
     }, [topMoviesQuery.isLoading, popularMoviesQuery.isLoading, latestMoviesQuery.isLoading])
 
     // Se occorrer algum erro entre as requisições o estado de isError se torna true

@@ -32,8 +32,9 @@ export function useSeries(){
 
     // Define topSeries e popularSeries com os dados recebidos da api
     useEffect(() => {
-        setTopSeries(topSeriesQuery.data?.results);
-        setPopularSeries(popularSeriesQuery.data?.results);
+        // filtrando apenas Series com backdrop_path e overview
+        setTopSeries(topSeriesQuery.data?.results.filter((serie: Serie) => serie.backdrop_path && serie.overview));
+        setPopularSeries(popularSeriesQuery.data?.results.filter((serie: Serie) => serie.backdrop_path && serie.overview));
     }, [topSeriesQuery.isLoading, popularSeriesQuery.isLoading])
 
     // Se occorrer algum erro entre as requisições o estado de isError se torna true
